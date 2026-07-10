@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# compiled output (built on deploy: npm run build)
+dist/
+
+# sass
+.sass-cache/
+*.css.map
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local wp
+*.sql
+wp-config-local.php

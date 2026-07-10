@@ -1,0 +1,3 @@
+@use '../abstracts' as *;
+// SPEC §2.2 — Hero. Built in Phase 3.
+.hero { padding-block: $section-rhythm; }

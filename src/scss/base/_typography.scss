@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+body {
+  font-family: $font-body;
+  font-size: $fs-p3;
+  color: $color-secondary;
+}
+
+h1 { font-size: $fs-h1; font-weight: 700; letter-spacing: $tracking-tight; }
+h2 { font-size: $fs-h2; font-weight: 700; letter-spacing: $tracking-tight; }
+h3 { font-size: $fs-h3; font-weight: 700; letter-spacing: $tracking-tight; }
+h4 { font-size: $fs-h4; font-weight: 700; letter-spacing: $tracking-tight; }
+h5 { font-size: $fs-h5; font-weight: 700; letter-spacing: $tracking-tight; line-height: $lh-h5; }

@@ -1,0 +1,77 @@
+// =============================================================
+//  DESIGN TOKENS — Whitepace SaaS Landing V2
+//  Values copied verbatim from SPEC.md §3 (Figma published styles).
+//  file QCSFL5ir6TaRTCVfcaLiqP · desktop frame 5:37139
+// =============================================================
+
+// ---- §3.1 Colour · Primary (blue) ----
+$color-primary-50:   #dcebfe;
+$color-primary-100:  #c4defd;
+$color-primary-200:  #a7cdfc;
+$color-primary-300:  #8abdfb;
+$color-primary-400:  #6cacfa;
+$color-primary-500:  #4f9cf9;  // base
+$color-primary-600:  #4282cf;
+$color-primary-700:  #3568a6;
+$color-primary-800:  #284e7d;
+$color-primary-900:  #1a3453;
+$color-primary-1000: #101f32;
+
+// ---- §3.2 Colour · Secondary (navy) ----
+$color-secondary-50:   #cdd7e3;
+$color-secondary-100:  #abbdd0;
+$color-secondary-200:  #819bb9;
+$color-secondary-300:  #587aa2;
+$color-secondary-400:  #2e598a;
+$color-secondary-500:  #043873;  // base
+$color-secondary-600:  #032f60;
+$color-secondary-700:  #03254d;
+$color-secondary-800:  #021c3a;
+$color-secondary-900:  #011326;
+$color-secondary-1000: #010b17;
+
+// Semantic aliases
+$color-primary:   $color-primary-500;
+$color-secondary: $color-secondary-500;
+$color-white:     #ffffff;
+
+// Accent (yellow CTA) — NOT published as a style in source (SPEC §3.2 note).
+// Extracted per-node during Phase 3; record source node id here on capture.
+// $color-accent: #______;  // TODO Phase 3 (node ref)
+
+// ---- §3.3 Typography · Inter ----
+$font-body:  'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+$tracking-tight: -0.02em;   // -2%
+
+$fs-h1: 4.5rem;    // 72
+$fs-h2: 4rem;      // 64
+$fs-h3: 3.375rem;  // 54
+$fs-h4: 2.25rem;   // 36
+$fs-h5: 1.75rem;   // 28  (lh 36)
+$fs-p1: 1.5rem;    // 24  (P1: lh 36 semibold / lh 32 regular)
+$fs-p2: 1.125rem;  // 18  (lh 23 medium / 30 regular)
+$fs-p3: 1rem;      // 16  base (lh 20 regular)
+
+$lh-h5: calc(36 / 28);
+$lh-p1-regular: calc(32 / 24);
+$lh-p2-regular: calc(30 / 18);
+$lh-p3-regular: calc(20 / 16);
+
+// ---- §3.4 Layout ----
+$container-max:  1376px;
+$container-pad:  32px;
+$section-rhythm: 140px;
+
+// Breakpoints — §3.4 (Breakpoint V2 frames)
+$breakpoints: (
+  'sm':  320px,
+  'md':  768px,
+  'lg':  1152px,
+  'xl':  1440px,
+  'xxl': 1920px,
+);
+
+// ---- misc ----
+$radius: 8px;
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+$dur: 200ms;

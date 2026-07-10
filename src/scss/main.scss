@@ -1,0 +1,19 @@
+// =============================================================
+//  agency-demo-01 · main entry (Dart Sass, @use/@forward)
+//  Whitepace SaaS Landing V2 — Noircraft Lab white-label build
+//  SCSS 7-1-lite per SPEC §6: abstracts / base / components / sections
+// =============================================================
+
+// base
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/base';
+@use 'base/container';
+
+// components
+@use 'components/buttons';
+
+// sections (added incrementally in Phase 3)
+@use 'sections/header';
+@use 'sections/hero';
+@use 'sections/footer';

@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+// SPEC §4: Button — primary (blue) / accent (yellow) / ghost (login), +/- arrow icon
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.875rem 1.5rem;
+  border: 0;
+  border-radius: $radius;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $dur $ease, transform $dur $ease;
+}
+
+.btn--primary { background: $color-primary; color: $color-white; }
+.btn--ghost   { background: transparent; color: $color-secondary; }
+// .btn--accent — yellow family; added when accent token captured (Phase 3)
