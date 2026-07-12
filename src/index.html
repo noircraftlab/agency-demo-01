@@ -6,28 +6,113 @@
   <title>Whitepace — SaaS Landing (Noircraft Lab build)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- DM Sans 500 added: source uses it for header nav links (nodes 5:38247…5:38256) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../dist/css/main.css">
 </head>
 <body>
-  <!-- Static preview shell. Sections are built incrementally in Phase 3. -->
+  <!-- ===================================================== -->
+  <!-- Header · node 5:38234                                 -->
+  <!-- ===================================================== -->
   <header class="site-header">
-    <div class="container">
-      <!-- nav — Phase 3 -->
+    <div class="container site-header__inner">
+
+      <a class="site-header__logo" href="#" aria-label="Whitepace — home">
+        <img class="site-header__logo-icon" src="../assets/img/logo-icon.svg" alt="" width="37" height="29">
+        <span class="site-header__logo-text">whitepace</span>
+      </a>
+
+      <div class="site-header__right">
+        <nav class="site-header__nav" aria-label="Main">
+          <a class="site-header__nav-link" href="#">
+            Products
+            <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
+              <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="site-header__nav-link" href="#">
+            Solutions
+            <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
+              <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="site-header__nav-link" href="#">
+            Resources
+            <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
+              <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="site-header__nav-link" href="#">
+            Pricing
+            <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
+              <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+
+        <div class="site-header__actions">
+          <a class="btn btn--accent btn--pad-login" href="#">Login</a>
+          <a class="btn btn--primary btn--pad-nav" href="#">
+            Try Whitepace free
+            <!-- TODO asset (verify at Phase 7 overlay): arrow icon = Group 212, 10×10 -->
+            <svg class="btn__icon" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </header>
 
   <main>
+    <!-- ===================================================== -->
+    <!-- 1 · Hero · node 5:37140                               -->
+    <!-- ===================================================== -->
     <section class="hero">
-      <div class="container">
-        <h1>Get more done with Whitepace</h1>
-        <!-- hero content — Phase 3 -->
+      <!-- Decor · swoosh · node 5:37141 (1988.85×433.11, centered on frame) -->
+      <img class="hero__swoosh" src="../assets/img/hero-swoosh.svg" alt="" aria-hidden="true" width="1989" height="433" loading="lazy">
+
+      <div class="container hero__inner">
+
+        <div class="hero__content">
+          <div class="hero__text">
+            <h1 class="hero__title">Get More Done with whitepace</h1>
+            <p class="hero__subtitle">Project management software that enables your teams to collaborate, plan, analyze and manage everyday tasks</p>
+          </div>
+          <a class="btn btn--primary btn--pad-hero" href="#">
+            Try Whitepace free
+            <svg class="btn__icon" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero__media">
+          <!-- Source node 5:37218 is a Freepik raster absent from the CC BY 4.0
+               community file — replaced with unDraw "Scrum Board" per charter §3.2
+               (recolored to #4F9CF9); documented in README. -->
+          <img class="hero__img" src="../assets/img/hero-illustration.svg" alt="Whitepace project management dashboard illustration" width="685" height="456">
+        </div>
+
       </div>
     </section>
+
+    <!-- Phase 3 build order (SPEC §2, all 11 sections):        -->
+    <!--  2 · Project Management   · node 5:38267 (upper block) -->
+    <!--  3 · Work Together        · node 5:38267 (lower block) -->
+    <!--  4 · Customise            · node 5:37351               -->
+    <!--  5 · Pricing              · node 5:37564               -->
+    <!--  6 · Your Work            · node 5:37712               -->
+    <!--  7 · Your Data            · node 5:37777               -->
+    <!--  8 · Sponsors             · node 5:37876               -->
+    <!--  9 · Apps                 · node 5:37936               -->
+    <!-- 10 · Testimonials         · node 5:38091               -->
+    <!-- 11 · Footer               · node 5:38172               -->
   </main>
 
   <footer class="site-footer">
-    <div class="container"><!-- footer — Phase 3 --></div>
+    <div class="container"><!-- footer — Phase 3, node 5:38172 --></div>
   </footer>
 
   <script src="./js/main.js" defer></script>

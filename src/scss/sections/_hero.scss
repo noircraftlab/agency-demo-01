@@ -1,3 +1,91 @@
-@use '../abstracts' as *;
-// SPEC §2.2 — Hero. Built in Phase 3.
-.hero { padding-block: $section-rhythm; }
+// =============================================================
+//  SECTION · Hero
+//  Source: node 5:37140 (frame 1440×656.39, fill #ffffff) · captured 2026-07-11
+//  Columns: Heading 691 (x32) + Image 685 (x723) = 1376, zero gutter
+//  Vertical: image py 100/100; heading centered (offset 47.7 = (456.39−361)/2)
+//  Assets wired 2026-07-13: swoosh (node 5:37141), illustration (unDraw swap §3.2)
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.hero {
+  position: relative;
+  background-color: $color-white;   // node 5:37140 fill
+  overflow: hidden;
+
+  // ---- Decor · swoosh · node 5:37141 (1988.85×433.11) ----
+  // Figma: x −274.5 / y 152.24 inside 1440-wide frame.
+  // Horizontal center of the swoosh = 719.9 ≈ 720 = frame center,
+  // so we anchor to 50% + translateX(-50%) — behaves correctly on
+  // viewports wider than 1440 (no magic left offset from edge).
+  &__swoosh {
+    position: absolute;
+    top: 152.24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1988.85px;
+    height: 433.11px;
+    max-width: none;                // guard vs global img { max-width: 100% }
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__inner {
+    position: relative;             // paints above &__swoosh (later in DOM)
+    display: flex;
+    align-items: center;            // matches 47.7px measured offset
+    padding-block: 100px;           // image y=100, bottom 656.39−556.39=100
+  }
+
+  // ---- Heading column · node 5:37208 (691 wide) ----
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;                      // text-block ↔ CTA
+    flex: 0 0 auto;
+    width: 691px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                      // h1 ↔ subtitle
+  }
+
+  &__title {
+    font-family: $font-body;        // Inter Bold · node 5:37210
+    font-size: $fs-h2;              // 64 (Header/H2 style in source — not 72)
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: $tracking-tight; // −1.28px @64
+    color: $color-primary;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-family: $font-body;        // Inter Regular 18/30 · node 5:37211
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;    // 30
+    letter-spacing: $tracking-tight;
+    color: $color-primary;
+    margin: 0;
+  }
+
+  // ---- Image column · node 5:37217 (685×456.39) ----
+  &__media {
+    flex: 0 0 auto;
+    width: 685px;
+    height: 456.39px;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // Source node 5:37218 is a Freepik raster absent from the CC BY 4.0
+    // community file — replaced with unDraw "Scrum Board" recolored to
+    // $color-secondary #4F9CF9 per charter §3.2; documented in README.
+  }
+}

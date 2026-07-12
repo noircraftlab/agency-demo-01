@@ -1,3 +1,89 @@
-@use '../abstracts' as *;
-// SPEC §2.1 — sticky nav. Built in Phase 3.
-.site-header {}
+// =============================================================
+//  SECTION · Header
+//  Source: node 5:38234 (frame 1440×92) · captured 2026-07-11
+//  Layout: px 32 / py 16 · logo left · nav+actions right
+//  ⚠ Nav links use DM Sans Medium 18/23 in source (nodes 5:38247…5:38256)
+//    — differs from SPEC §3 (Inter-only). Flagged in session log.
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+// Nav font is section-local on purpose: SPEC §3 tokens stay verbatim
+// (charter §3.5); DM Sans appears in source only on header nav links.
+$font-nav: 'DM Sans', $font-body;
+
+.site-header {
+  background-color: $color-white;   // frame has no own fill; page bg is white (5:37139)
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 16px;            // 92 total = 16 + 60 + 16
+  }
+
+  // ---- Logo · node 5:38235 (191 wide) ----
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;                      // icon 37 + text at ml 47 → 10px gap
+    text-decoration: none;
+  }
+
+  &__logo-icon {
+    display: block;                 // now an <img> (assets/img/logo-icon.svg, node 5:38237)
+    width: 37px;
+    height: 29px;
+    flex: 0 0 auto;
+  }
+
+  &__logo-text {
+    font-family: $font-body;        // Inter Bold 28 · node 5:38243
+    font-size: $fs-h5;              // 28
+    font-weight: 700;
+    line-height: normal;
+    color: $color-primary;
+  }
+
+  // ---- Right group · Frame 375 (nav 551.5 → gap 75.5 → buttons) ----
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 75.5px;                    // measured: nav content ends 476, buttons start 551.5
+  }
+
+  // ---- Nav · node 5:38245 · gap 32 ----
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;                      // label ↔ chevron
+
+    font-family: $font-nav;         // DM Sans Medium · node 5:38247
+    font-size: $fs-p2;              // 18
+    font-weight: 500;
+    line-height: calc(23 / 18);
+    color: $color-primary;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover { color: $color-primary-600; }
+  }
+
+  &__nav-chevron {
+    width: 9px;                     // vector 9×4 · node 5:38248
+    height: 4px;
+    flex: 0 0 auto;
+  }
+
+  // ---- Actions · node 5:38258 · gap 24, h 60 ----
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+}
