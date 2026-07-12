@@ -1,18 +1,58 @@
-@use '../abstracts' as *;
+// =============================================================
+//  COMPONENT · Buttons
+//  Captured from Figma 2026-07-11:
+//    .btn--primary  → node 5:38261 (Header / Btn-free-trial), 5:37212 (Hero)
+//    .btn--accent   → node 5:38259 (Header / Btn-login)
+//  Text style: Paragraph/P2/Medium — Inter 18/23, tracking −2%.
+// =============================================================
+@use 'sass:color';
+@use '../abstracts/tokens' as *;
 
-// SPEC §4: Button — primary (blue) / accent (yellow) / ghost (login), +/- arrow icon
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  padding: 0.875rem 1.5rem;
+  justify-content: center;
+  gap: 10px;
+
+  font-family: $font-body;
+  font-size: $fs-p2;              // 18
+  font-weight: 500;
+  line-height: calc(23 / 18);     // 23
+  letter-spacing: $tracking-tight;
+  text-decoration: none;
+  white-space: nowrap;
+
   border: 0;
-  border-radius: $radius;
-  font-weight: 600;
+  border-radius: $radius;         // 8
   cursor: pointer;
-  transition: background $dur $ease, transform $dur $ease;
+  transition: background-color $dur $ease;
 }
 
-.btn--primary { background: $color-primary; color: $color-white; }
-.btn--ghost   { background: transparent; color: $color-secondary; }
-// .btn--accent — yellow family; added when accent token captured (Phase 3)
+// Blue CTA — white text on primary-500
+.btn--primary {
+  background-color: $color-primary;
+  color: $color-white;
+
+  &:hover { background-color: $color-primary-600; }
+}
+
+// Yellow accent (Login) — navy text on accent yellow · node 5:38259
+.btn--accent {
+  background-color: $color-accent;
+  color: $color-secondary;
+
+  &:hover { background-color: color.adjust($color-accent, $lightness: -6%); }
+}
+
+// Size paddings (per captured instances)
+.btn--pad-hero   { padding: 20px; }          // Hero CTA · node 5:37212 (219×63)
+.btn--pad-nav    { padding: 16px 24px; }     // Header trial · node 5:38261 (h60)
+.btn--pad-login  { padding: 16px 40px; }     // Header login · node 5:38259 (h60)
+
+// Inline arrow icon inside buttons (10×10 in source)
+.btn__icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+}

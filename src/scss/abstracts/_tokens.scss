@@ -36,8 +36,8 @@ $color-secondary: $color-secondary-500;
 $color-white:     #ffffff;
 
 // Accent (yellow CTA) — NOT published as a style in source (SPEC §3.2 note).
-// Extracted per-node during Phase 3; record source node id here on capture.
-// $color-accent: #______;  // TODO Phase 3 (node ref)
+// Extracted per-node during Phase 3, per charter §3.5.
+$color-accent: #ffe492;  // node 5:38259 (Header / Btn-login background), captured 2026-07-11
 
 // ---- §3.3 Typography · Inter ----
 $font-body:  'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
