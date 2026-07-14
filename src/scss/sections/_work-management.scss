@@ -1,0 +1,133 @@
+// =============================================================
+//  SECTION · Work Management (Project Management + Work Together)
+//  Source: node 5:38267 (frame 1440×1370.76 · py 140 / px 32 · gap 100)
+//  Row 1 · Project Management · node 5:38268 (1376×448, zero gutter)
+//  Row 2 · Work Together      · node 5:38525 (1376×542.76, gap 160)
+//  Captured 2026-07-13/14 via get_metadata + get_design_context
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.work-management {
+  position: relative;
+  overflow: hidden;                    // decor circles extend past the left viewport edge
+  padding-block: $section-rhythm;      // 140 · node 5:38267
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;                        // row 1 ↔ row 2 · node 5:38267
+  }
+
+  // ---- shared row anatomy ----
+  &__row {
+    display: flex;
+    align-items: center;               // Headline vertically centered in both rows
+  }
+
+  &__row--together {
+    gap: 160px;                        // node 5:38525 (PM row has zero gutter)
+  }
+
+  &__headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;                         // text-block ↔ CTA
+    flex: 1 1 0;                       // PM → 657 / WT → 633 at xl
+    min-width: 0;
+  }
+
+  &__text {
+    position: relative;                // anchors swoosh underlines + decor circles
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                         // h2 ↔ paragraph
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style in source
+    font-size: $fs-h1;                 // 72 (section H2s use the H1 style, NOT $fs-h2)
+    font-weight: 700;
+    line-height: normal;               // Figma leading normal (≈87px/line @72)
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-text;                // #212529 · nodes 5:38300 / 5:39849
+    margin: 0;
+  }
+
+  &__copy {
+    font-family: $font-body;           // Inter Regular 18/30 · nodes 5:38301 / 5:39850
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;
+    color: $color-text;
+    margin: 0;
+  }
+
+  // ---- swoosh underlines (absolute inside &__text) ----
+  &__swoosh {
+    position: absolute;
+    max-width: none;                   // guard vs global img { max-width: 100% }
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__swoosh--pm {                      // node 5:38271 · under “Management” (H1 line 2)
+    top: 151.37px;
+    left: 3.41px;
+    width: 515.92px;
+    height: 38.02px;
+  }
+
+  &__swoosh--together {                // node 5:39820 · under “together”
+    top: 65.23px;
+    left: 214.56px;
+    width: 334.11px;
+    height: 25.55px;
+  }
+
+  // ---- Row 1 · illustration slot · node 5:38308 (719×448) ----
+  &__media {
+    flex: 0 0 auto;
+    width: 719px;
+    height: 448px;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // Source node 5:38308 is a flat #C4DEFD placeholder (Freepik raster absent
+    // from the CC BY 4.0 community file) — replaced with unDraw “Task list”
+    // recolored to #4F9CF9 per charter §3.2; documented in README.
+  }
+
+  // ---- Row 2 · avatars composition · node 5:38526 (583×542.76) ----
+  &__graphic {
+    flex: 0 0 auto;
+    display: block;
+    width: 583px;
+    height: 542.76px;
+    max-width: none;
+  }
+
+  // ---- decor · concentric circles · node 5:39796 (569.54×440.35) ----
+  // Figma: BACKGROUND child of the Work-Together text-block, offset
+  // x −1126.30 / y −794.77 from it — lands at the section’s top-left,
+  // partially off-canvas (hence overflow:hidden on the section root).
+  // Ring opacity (20% per ring) is baked into the exported SVG.
+  &__decor {
+    position: absolute;
+    top: -794.77px;
+    left: -1126.3px;
+    width: 569.54px;
+    height: 440.35px;
+    max-width: none;
+    mix-blend-mode: multiply;          // node 5:39796 blend mode
+    z-index: -1;                       // behind headline text
+    pointer-events: none;
+    user-select: none;
+  }
+}

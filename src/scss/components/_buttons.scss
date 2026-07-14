@@ -45,9 +45,10 @@
 }
 
 // Size paddings (per captured instances)
-.btn--pad-hero   { padding: 20px; }          // Hero CTA · node 5:37212 (219×63)
-.btn--pad-nav    { padding: 16px 24px; }     // Header trial · node 5:38261 (h60)
-.btn--pad-login  { padding: 16px 40px; }     // Header login · node 5:38259 (h60)
+.btn--pad-hero    { padding: 20px; }          // Hero CTA · node 5:37212 (219×63)
+.btn--pad-nav     { padding: 16px 24px; }     // Header trial · node 5:38261 (h60)
+.btn--pad-login   { padding: 16px 40px; }     // Header login · node 5:38259 (h60)
+.btn--pad-section { padding: 20px 40px; }     // PM/WT CTAs · nodes 5:38302 (201×63), 5:39851 (186×63)
 
 // Inline arrow icon inside buttons (10×10 in source)
 .btn__icon {
@@ -55,4 +56,10 @@
   width: 10px;
   height: 10px;
   flex: 0 0 auto;
+}
+
+// Section CTAs carry a larger arrow · Group 214 (14×14)
+.btn__icon--md {
+  width: 14px;
+  height: 14px;
 }

@@ -98,9 +98,64 @@
       </div>
     </section>
 
-    <!-- Phase 3 build order (SPEC §2, all 11 sections):        -->
-    <!--  2 · Project Management   · node 5:38267 (upper block) -->
-    <!--  3 · Work Together        · node 5:38267 (lower block) -->
+    <!-- ===================================================== -->
+    <!-- 2+3 · Work Management · node 5:38267                  -->
+    <!--       (Project Management + Work Together rows)       -->
+    <!-- ===================================================== -->
+    <section class="work-management">
+      <div class="container work-management__inner">
+
+        <!-- 2 · Project Management · node 5:38268 -->
+        <div class="work-management__row">
+          <div class="work-management__headline">
+            <div class="work-management__text">
+              <!-- Decor · swoosh underline · node 5:38271 (515.92×38.02) -->
+              <img class="work-management__swoosh work-management__swoosh--pm" src="../assets/img/pm-swoosh.svg" alt="" aria-hidden="true" width="516" height="38" loading="lazy">
+              <h2 class="work-management__title">Project Management</h2>
+              <p class="work-management__copy">Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them to a note.</p>
+            </div>
+            <a class="btn btn--primary btn--pad-section" href="#">
+              Get Started
+              <!-- arrow icon · Group 214, 14×14 -->
+              <svg class="btn__icon btn__icon--md" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="work-management__media">
+            <!-- Source node 5:38308 is a flat #C4DEFD placeholder (Freepik raster
+                 absent from the CC BY 4.0 file) — replaced with unDraw "Task list"
+                 recolored to #4F9CF9 per charter §3.2; documented in README. -->
+            <img class="work-management__img" src="../assets/img/pm-illustration.svg" alt="Project management notes and tasks illustration" width="719" height="448" loading="lazy">
+          </div>
+        </div>
+
+        <!-- 3 · Work Together · node 5:38525 -->
+        <div class="work-management__row work-management__row--together">
+          <!-- Avatars composition · node 5:38526 (583×542.76, vector art, CC BY 4.0) -->
+          <img class="work-management__graphic" src="../assets/img/wt-graphic.svg" alt="" aria-hidden="true" width="583" height="543" loading="lazy">
+          <div class="work-management__headline">
+            <div class="work-management__text">
+              <!-- Decor · concentric circles · node 5:39796 (569.54×440.35, blend multiply) -->
+              <img class="work-management__decor" src="../assets/img/wt-circles.svg" alt="" aria-hidden="true" width="570" height="440" loading="lazy">
+              <!-- Decor · swoosh underline · node 5:39820 (334.11×25.55) -->
+              <img class="work-management__swoosh work-management__swoosh--together" src="../assets/img/wt-swoosh.svg" alt="" aria-hidden="true" width="334" height="26" loading="lazy">
+              <h2 class="work-management__title">Work together</h2>
+              <p class="work-management__copy">With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.</p>
+            </div>
+            <a class="btn btn--primary btn--pad-section" href="#">
+              Try it now
+              <svg class="btn__icon btn__icon--md" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Phase 3 build order (SPEC §2, remaining sections):     -->
     <!--  4 · Customise            · node 5:37351               -->
     <!--  5 · Pricing              · node 5:37564               -->
     <!--  6 · Your Work            · node 5:37712               -->

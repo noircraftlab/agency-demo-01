@@ -39,6 +39,10 @@ $color-white:     #ffffff;
 // Extracted per-node during Phase 3, per charter §3.5.
 $color-accent: #ffe492;  // node 5:38259 (Header / Btn-login background), captured 2026-07-11
 
+// Text (dark) — NOT published as a style in source. Used by Work-Management
+// headings/copy. Extracted per-node during Phase 3, per charter §3.5.
+$color-text: #212529;  // nodes 5:38300 / 5:38301 / 5:39849 / 5:39850, captured 2026-07-14
+
 // ---- §3.3 Typography · Inter ----
 $font-body:  'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
 $tracking-tight: -0.02em;   // -2%
