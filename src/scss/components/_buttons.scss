@@ -63,3 +63,12 @@
   width: 14px;
   height: 14px;
 }
+
+// Source inconsistency: the Customise CTA text (node 5:37386) is set in
+// Montserrat Medium 18/23 with zero tracking — unlike every other CTA
+// (Inter P2/Medium, −2%). Followed the source per known-diff policy
+// (cf. DM Sans header nav, 2026-07-11); normalize at Phase 7 if desired.
+.btn--face-montserrat {
+  font-family: $font-montserrat;
+  letter-spacing: normal;
+}

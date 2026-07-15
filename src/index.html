@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- DM Sans 500 added: source uses it for header nav links (nodes 5:38247…5:38256) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@500&display=swap" rel="stylesheet">
+  <!-- Montserrat 500 added: source uses it for the Customise CTA text (node 5:37386) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@500&family=Montserrat:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../dist/css/main.css">
 </head>
 <body>
@@ -155,8 +156,39 @@
       </div>
     </section>
 
+    <!-- ===================================================== -->
+    <!-- 4 · Customise · node 5:37351                          -->
+    <!-- ===================================================== -->
+    <section class="customise">
+      <div class="container customise__inner">
+
+        <div class="customise__headline">
+          <div class="customise__text">
+            <!-- Decor · swoosh underline · node 5:37354 (418.26×31.47) -->
+            <img class="customise__swoosh" src="../assets/img/customise-swoosh.svg" alt="" aria-hidden="true" width="418" height="31" loading="lazy">
+            <h2 class="customise__title">Customise it to your needs</h2>
+            <p class="customise__copy">Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
+          </div>
+          <a class="btn btn--primary btn--pad-section btn--face-montserrat" href="#">
+            Let&rsquo;s Go
+            <!-- arrow icon · Group 214, 14×14 -->
+            <svg class="btn__icon btn__icon--md" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="customise__media">
+          <!-- Source node 107:53693 is a flat #C4DEFD placeholder (Freepik raster
+               absent from the CC BY 4.0 file) — replaced with an unDraw illustration
+               recolored to #4F9CF9 per charter §3.2; documented in README. -->
+          <img class="customise__img" src="../assets/img/customise-illustration.svg" alt="App customisation with plugins and themes illustration" width="686" height="479" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
     <!-- Phase 3 build order (SPEC §2, remaining sections):     -->
-    <!--  4 · Customise            · node 5:37351               -->
     <!--  5 · Pricing              · node 5:37564               -->
     <!--  6 · Your Work            · node 5:37712               -->
     <!--  7 · Your Data            · node 5:37777               -->

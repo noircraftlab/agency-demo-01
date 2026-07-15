@@ -45,6 +45,11 @@ $color-text: #212529;  // nodes 5:38300 / 5:38301 / 5:39849 / 5:39850, captured 
 
 // ---- §3.3 Typography · Inter ----
 $font-body:  'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+
+// Montserrat — NOT in SPEC §3. Single occurrence in source: the Customise CTA
+// text (node 5:37386, Montserrat Medium 18/23, zero tracking). Extracted
+// per-node during Phase 3, per charter §3.5. Cf. DM Sans header-nav precedent.
+$font-montserrat: 'Montserrat', $font-body;
 $tracking-tight: -0.02em;   // -2%
 
 $fs-h1: 4.5rem;    // 72

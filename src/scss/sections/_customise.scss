@@ -1,0 +1,85 @@
+// =============================================================
+//  SECTION · Customise it to your needs
+//  Source: node 5:37351 (frame 1440×759 · py 140 / px 32 · gap 98)
+//  Heading column · node 5:37352 (592×411, flex-1)
+//  Illustration    · node 5:37391 (686×479)
+//  Captured 2026-07-15 via get_metadata + get_design_context
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.customise {
+  padding-block: $section-rhythm;      // 140 · node 5:37351
+
+  &__inner {
+    display: flex;
+    align-items: center;               // Heading vertically centered (y 174 in 759 frame)
+    gap: 98px;                         // node 5:37351 (592 + 98 + 686 = 1376 = container)
+  }
+
+  &__headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;                         // text-block ↔ CTA · node 5:37352
+    flex: 1 1 0;                       // → 592 at xl
+    min-width: 0;
+  }
+
+  &__text {
+    position: relative;                // anchors swoosh underline
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                         // h2 ↔ paragraph · node 5:37353
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style in source
+    font-size: $fs-h1;                 // 72 (section H2s use the H1 style, NOT $fs-h2)
+    font-weight: 700;
+    line-height: normal;               // Figma leading normal (≈87px/line @72)
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-text;                // #212529 · node 5:37383
+    margin: 0;
+  }
+
+  &__copy {
+    font-family: $font-body;           // Inter Regular 18/30 · node 5:37384
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    color: $color-text;
+    margin: 0;
+  }
+
+  // ---- swoosh underline · node 5:37354 (yellow highlight) ----
+  // Absolute inside &__text, under "your needs" (H1 line 2).
+  &__swoosh {
+    position: absolute;
+    top: 148.06px;                     // node 5:37354 · y within text-block
+    left: 0;
+    width: 418.26px;
+    height: 31.47px;
+    max-width: none;                   // guard vs global img { max-width: 100% }
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // ---- illustration slot · node 5:37391 (686×479) ----
+  &__media {
+    flex: 0 0 auto;
+    width: 686px;
+    height: 479px;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // Source node 107:53693 is a flat #C4DEFD placeholder (Freepik raster
+    // absent from the CC BY 4.0 community file) — replaced with an unDraw
+    // illustration recolored to #4F9CF9 per charter §3.2; documented in README.
+  }
+}
