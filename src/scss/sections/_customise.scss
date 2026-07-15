@@ -57,6 +57,8 @@
   // Absolute inside &__text, under "your needs" (H1 line 2).
   &__swoosh {
     position: absolute;
+    z-index: -1;                       // behind heading text — Figma paints the
+                                       // marker stroke UNDER the letters (2026-07-15)
     top: 148.06px;                     // node 5:37354 · y within text-block
     left: 0;
     width: 418.26px;

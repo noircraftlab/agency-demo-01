@@ -68,6 +68,8 @@
   // ---- swoosh underlines (absolute inside &__text) ----
   &__swoosh {
     position: absolute;
+    z-index: -1;                       // behind heading text — Figma paints the
+                                       // marker stroke UNDER the letters (2026-07-15)
     max-width: none;                   // guard vs global img { max-width: 100% }
     pointer-events: none;
     user-select: none;

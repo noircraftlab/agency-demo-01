@@ -1,7 +1,5 @@
 <svg width="219" height="441" viewBox="0 0 219 441" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="219" height="441" fill="#E5E5E5"/>
 <g id="Landing page V2 / desktop / 1440px" clip-path="url(#clip0_5_34420)">
-<rect width="1440" height="8192" transform="translate(0 -751.61)" fill="white"/>
 <g id="Work-management">
 <g id="Content">
 <g id="Headline">
@@ -41,7 +39,7 @@
 </g>
 <defs>
 <clipPath id="clip0_5_34420">
-<rect width="1440" height="8192" fill="white" transform="translate(0 -751.61)"/>
+<rect width="219" height="441"/>
 </clipPath>
 </defs>
 </svg>
