@@ -4,7 +4,12 @@ html { -webkit-text-size-adjust: 100%; }
 body { min-height: 100vh; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 img, picture, svg, video { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; color: inherit; }
-h1, h2, h3, h4, h5 { line-height: 1.1; text-wrap: balance; }
+// text-wrap: balance removed 2026-07-15 — it redistributes heading line
+// breaks (equalized lines) and fights Figma's greedy wrap on EVERY heading;
+// caused the Customise H2 to break "Customise it / to your needs" instead of
+// the source's "Customise it to / your needs". Likely also the root cause of
+// the Hero H1 line-break known-diff (2026-07-11) — verify at Phase 7 overlay.
+h1, h2, h3, h4, h5 { line-height: 1.1; }
 p { text-wrap: pretty; }
 a { color: inherit; text-decoration: none; }
 ul[role='list'] { list-style: none; padding: 0; }
