@@ -64,6 +64,23 @@
   height: 14px;
 }
 
+// Pricing card CTAs · nodes 5:37634 / 5:37672 / 5:37710 (h≈52)
+// Text steps down to Paragraph/P3/Medium — Inter 16, leading normal.
+.btn--pad-card {
+  padding: 16px 40px;
+  font-size: $fs-p3;              // 16
+  line-height: normal;
+}
+
+// White card CTA with accent outline · nodes 5:37634 / 5:37710
+.btn--outline-accent {
+  background-color: $color-white;
+  border: 1px solid $color-accent;
+  color: $color-text;
+
+  &:hover { background-color: $color-accent; }
+}
+
 // Source inconsistency: the Customise CTA text (node 5:37386) is set in
 // Montserrat Medium 18/23 with zero tracking — unlike every other CTA
 // (Inter P2/Medium, −2%). Followed the source per known-diff policy

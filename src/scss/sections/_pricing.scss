@@ -1,0 +1,181 @@
+// =============================================================
+//  SECTION · Pricing — "Choose Your Plan"
+//  Source: node 5:37564 (frame 1440×1180 · py 140 / px 32 · gap 60)
+//  Heading      · node 5:37565 (1376×171, centered, swoosh decor)
+//  Price list   · node 5:37597 (row · gap 32 · items center)
+//  Cards        · nodes 5:37598 (Free) / 5:37636 (Personal, featured)
+//                       / 5:37674 (Organization)
+//  Captured 2026-07-16 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.pricing {
+  padding-block: $section-rhythm;      // 140 · node 5:37564
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;                         // heading ↔ price list · node 5:37564
+  }
+
+  // ---- heading block · node 5:37565 (1376×171) ----
+  &__heading {
+    position: relative;                // anchors swoosh decor
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;                         // h2 ↔ subtitle · node 5:37565
+    width: 100%;
+    text-align: center;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style in source
+    font-size: $fs-h1;                 // 72 (section H2s use the H1 style, NOT $fs-h2)
+    font-weight: 700;
+    line-height: normal;               // Figma leading normal (87px/line @72 · node 5:37595)
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-text;                // #212529 · node 5:37595
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-family: $font-body;           // Inter Regular 18/30 · node 5:37596
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    color: $color-text;
+    max-width: 979px;                  // node 5:37596 (979×60, 2 lines)
+    margin: 0;
+  }
+
+  // ---- swoosh decor · node 5:37566 (yellow highlight) ----
+  // Absolute inside &__heading, under "Your Plan" (right half of H2 line).
+  &__swoosh {
+    position: absolute;
+    z-index: -1;                       // behind heading text — Figma paints the
+                                       // marker stroke UNDER the letters (locked 2026-07-15)
+    top: 58.48px;                      // node 5:37566 · y within heading frame
+    left: 675.64px;                    // node 5:37566 · x within heading frame (1376 ref)
+    width: 334.73px;
+    height: 30.11px;
+    max-width: none;                   // guard vs global img { max-width: 100% }
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // ---- price list · node 5:37597 ----
+  &__grid {
+    display: flex;
+    align-items: center;               // Personal (py 80) extends symmetrically · node 5:37597
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+  }
+
+  // ---- card · nodes 5:37598 / 5:37674 (side) · 5:37636 (featured) ----
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 25px;                         // text-block ↔ bullets ↔ CTA · node 5:37598
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 40px 44px;                // node 5:37598
+    background-color: $color-white;
+    border: 1px solid $color-accent;   // #FFE492 · node 5:37598
+    border-radius: 10px;               // card radius per source (NOT $radius 8)
+    color: $color-text;                // #212529 · node 5:37599
+  }
+
+  &__card--featured {                  // Personal · node 5:37636
+    padding-block: 80px;               // taller frame → symmetric overhang
+    border: 0;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);  // node 5:37636 drop shadow
+    color: $color-secondary;           // #043873 · node 5:37637
+  }
+
+  // ---- card text block · node 5:37599 ----
+  &__card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+  }
+
+  &__card-name {
+    font-family: $font-body;           // Inter Semi Bold 24/36 — Paragraph/P1/Semibold
+    font-size: $fs-p1;                 // 24
+    font-weight: 600;
+    line-height: calc(36 / 24);        // 36
+    letter-spacing: 0;                 // P1/Semibold carries zero tracking in source
+    margin: 0;
+  }
+
+  &__card-price {
+    font-family: $font-body;           // Inter Bold 36 — Header/H4 · node 5:37601
+    font-size: $fs-h4;                 // 36
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: $tracking-tight;   // −0.72px @36
+    margin: 0;
+  }
+
+  &__card-tagline {
+    font-family: $font-body;           // Inter Medium 18/23 — Paragraph/P2/Medium
+    font-size: $fs-p2;
+    font-weight: 500;
+    line-height: calc(23 / 18);        // 23
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    margin: 0;
+  }
+
+  // ---- bullet list · node 5:37603 ----
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;                         // node 5:37603
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: 19px;                         // icon ↔ text · node 5:37604
+  }
+
+  &__feature-icon {
+    flex: 0 0 auto;
+    width: 18px;                       // node 5:37605 (18.006 — check-circle glyph)
+    height: 18px;
+  }
+
+  &__feature-text {
+    flex: 1 1 0;
+    min-width: 0;
+    font-family: $font-body;           // Inter Regular 16/20 — Paragraph/P3/Regular
+    font-size: $fs-p3;                 // 16 · node 5:37608
+    font-weight: 400;
+    line-height: $lh-p3-regular;       // 20
+    letter-spacing: $tracking-tight;   // −0.32px @16
+    margin: 0;
+    // NOTE on wraps: the source's "Connect primary Google Calendar account "
+    // carries a TRAILING SPACE that Figma counts in layout (314.6px > the
+    // 312.33px box) — it pushes "account" to line 2. Browsers hang trailing
+    // spaces instead (even with pre-wrap), so the HTML glues that space to
+    // the word as &nbsp; to reproduce the wrap (2026-07-16).
+  }
+
+  // Featured card bullets step up to P2/Medium 18/23 · node 5:37646
+  &__card--featured &__feature-text {
+    font-size: $fs-p2;                 // 18
+    font-weight: 500;
+    line-height: calc(23 / 18);        // 23
+  }
+}

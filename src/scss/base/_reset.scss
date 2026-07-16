@@ -10,7 +10,10 @@ input, button, textarea, select { font: inherit; color: inherit; }
 // the source's "Customise it to / your needs". Likely also the root cause of
 // the Hero H1 line-break known-diff (2026-07-11) — verify at Phase 7 overlay.
 h1, h2, h3, h4, h5 { line-height: 1.1; }
-p { text-wrap: pretty; }
+// p { text-wrap: pretty } removed 2026-07-16 — same family as the balance bug
+// above: pretty re-breaks lines to avoid orphans and fights Figma's greedy
+// wrap (Pricing/Personal bullet "Connect primary Google Calendar account"
+// broke after "Google" instead of the source's break after "Calendar").
 a { color: inherit; text-decoration: none; }
 ul[role='list'] { list-style: none; padding: 0; }
 

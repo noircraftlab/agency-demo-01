@@ -188,8 +188,142 @@
       </div>
     </section>
 
+    <!-- NOTE: bullet strings keep the source's TRAILING SPACES verbatim.
+         The one after "…Calendar account" is layout-significant: Figma counts
+         it (314.6px > the 312.33px text box) and wraps "account" to line 2.
+         Browsers hang trailing spaces instead, so it is glued to the word as
+         &nbsp; to reproduce the wrap. Do NOT let a formatter strip it. -->
+    <!-- ===================================================== -->
+    <!-- 5 · Pricing · node 5:37564                            -->
+    <!-- ===================================================== -->
+    <section class="pricing">
+      <div class="container pricing__inner">
+
+        <div class="pricing__heading">
+          <!-- Decor · swoosh highlight · node 5:37566 (334.73×30.11, under "Your Plan") -->
+          <img class="pricing__swoosh" src="../assets/img/pricing-swoosh.svg" alt="" aria-hidden="true" width="335" height="30" loading="lazy">
+          <h2 class="pricing__title">Choose Your Plan</h2>
+          <p class="pricing__subtitle">Whether you want to get organized, keep your personal life on track, or boost workplace productivity, Evernote has the right plan for you.</p>
+        </div>
+
+        <div class="pricing__grid">
+
+          <!-- Card · Free · node 5:37598 -->
+          <article class="pricing__card">
+            <div class="pricing__card-head">
+              <h3 class="pricing__card-name">Free</h3>
+              <p class="pricing__card-price">$0</p>
+              <p class="pricing__card-tagline">Capture ideas and find them quickly</p>
+            </div>
+            <ul class="pricing__features">
+              <li class="pricing__feature">
+                <!-- check-circle icon · node 5:37605 -->
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Sync unlimited devices</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">10 GB monthly uploads </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">200 MB max. note size </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Customize Home dashboard and access extra widgets</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Connect primary Google Calendar account&nbsp;</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Add due dates, reminders, and notifications to your tasks  </p>
+              </li>
+            </ul>
+            <a class="btn btn--outline-accent btn--pad-card" href="#">Get Started</a>
+          </article>
+
+          <!-- Card · Personal (featured) · node 5:37636 -->
+          <article class="pricing__card pricing__card--featured">
+            <div class="pricing__card-head">
+              <h3 class="pricing__card-name">Personal</h3>
+              <p class="pricing__card-price">$11.99</p>
+              <p class="pricing__card-tagline">Keep home and family on track</p>
+            </div>
+            <ul class="pricing__features">
+              <li class="pricing__feature">
+                <!-- check-circle icon (blue) · node 5:37643 -->
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Sync unlimited devices</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">10 GB monthly uploads </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">200 MB max. note size </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Customize Home dashboard and access extra widgets</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Connect primary Google Calendar account&nbsp;</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-blue.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Add due dates, reminders, and notifications to your tasks  </p>
+              </li>
+            </ul>
+            <a class="btn btn--primary btn--pad-card" href="#">Get Started</a>
+          </article>
+
+          <!-- Card · Organization · node 5:37674 -->
+          <article class="pricing__card">
+            <div class="pricing__card-head">
+              <h3 class="pricing__card-name">Organization</h3>
+              <p class="pricing__card-price">$49.99</p>
+              <p class="pricing__card-tagline">Capture ideas and find them quickly</p>
+            </div>
+            <ul class="pricing__features">
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Sync unlimited devices</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">10 GB monthly uploads </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">200 MB max. note size </p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Customize Home dashboard and access extra widgets</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Connect primary Google Calendar account&nbsp;</p>
+              </li>
+              <li class="pricing__feature">
+                <img class="pricing__feature-icon" src="../assets/img/pricing-check-dark.svg" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
+                <p class="pricing__feature-text">Add due dates, reminders, and notifications to your tasks  </p>
+              </li>
+            </ul>
+            <a class="btn btn--outline-accent btn--pad-card" href="#">Get Started</a>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
     <!-- Phase 3 build order (SPEC §2, remaining sections):     -->
-    <!--  5 · Pricing              · node 5:37564               -->
     <!--  6 · Your Work            · node 5:37712               -->
     <!--  7 · Your Data            · node 5:37777               -->
     <!--  8 · Sponsors             · node 5:37876               -->
