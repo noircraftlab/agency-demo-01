@@ -1,0 +1,92 @@
+// =============================================================
+//  SECTION · Your Work — "Your work, everywhere you are"
+//  Source: node 5:37712 (frame 1440×574 · py 140 / px 32 · dark band)
+//  Heading      · node 5:37713 (gap 60 · text-block ↔ button)
+//  Text-block   · node 5:37714 (1064×171 · gap 24 · H2 + subtitle)
+//  Swoosh       · node 5:37715 (314×24 · blue marker under "you are")
+//  Btn-try      · node 5:37746 (195×63 · btn--primary, pad-section)
+//  Spiral decor · node 5:37747 (rings, opacity .2 baked in asset) —
+//                 lives INSIDE Btn-try in source, offset far left;
+//                 visually a left-edge section decoration clipped by
+//                 the section bounds. Export = visible crop 262×837,
+//                 local origin == section-space (0, −184).
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.your-work {
+  position: relative;
+  z-index: 0;                          // own stacking context: z:-1 decor
+                                       // paints ABOVE this bg, below content
+  overflow: hidden;                    // clips spiral (precedent: .work-management)
+  padding-block: $section-rhythm;      // 140 · node 5:37712
+  background-color: $color-secondary;  // #043873 · node 5:37712
+
+  &__inner {
+    position: relative;                // anchors spiral decor
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;                         // text-block ↔ button · node 5:37713
+  }
+
+  // ---- text block · node 5:37714 (1064×171) ----
+  &__text-block {
+    position: relative;                // anchors swoosh
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                         // h2 ↔ subtitle
+    width: 1064px;
+    max-width: 100%;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style
+    font-size: $fs-h1;                 // section H2s use the H1 style (locked)
+    font-weight: 700;
+    line-height: normal;               // 87px/line @72 · node 5:37744
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-white;               // dark band → white text
+    margin: 0;
+    // ⚠️ knife-edge wrap: line measures ~1064px in a 1064px box (Figma = 1 line).
+    // Kerning should keep it on one line; QA check #1 — "are" must not drop.
+  }
+
+  &__subtitle {
+    font-family: $font-body;           // Inter Regular 18/30 · node 5:37745
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    color: $color-white;
+    text-align: center;
+    margin: 0;
+    // Figma wrap (2 lines): "…Dropbox and | OneDrive.…" — L1 ≈ 1063.5/1064px.
+  }
+
+  // ---- blue marker swoosh under "you are" · node 5:37715 ----
+  &__swoosh {
+    position: absolute;
+    z-index: -1;                       // behind heading text (locked 2026-07-15)
+    top: 61.09px;                      // y within text-block · node 5:37715
+    left: 763.5px;
+    width: 314.03px;
+    height: 23.96px;
+  }
+
+  // ---- spiral rings decor · node 5:37747 ----
+  // Asset viewBox 262×837 = crop of the visible area; its local (0,0)
+  // sits at section-space (0, −184). Anchored to __inner (container box
+  // == section frame at 1440, stays centered on wider viewports):
+  //   left 0                            (section x0 == container x0)
+  //   top  −184 − 140 (section pad-top) = −324
+  &__decor {
+    position: absolute;
+    z-index: -1;                       // above section bg, below content
+    top: -324px;
+    left: 0;
+    width: 262px;
+    height: 837px;
+    pointer-events: none;
+  }
+}
