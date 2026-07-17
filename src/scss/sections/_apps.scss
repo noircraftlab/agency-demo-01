@@ -1,0 +1,106 @@
+// =============================================================
+//  SECTION · Apps — "Work with Your Favorite Apps"
+//  Source: node 5:37936 (frame 1440×750.8 · py 140 / px 32 · navy
+//          #043873 = Secondary/500 · row · gap 100 · items start)
+//  Waves    · node 5:37937 (source 1530.8×700.4 · opacity 30%
+//             line art · top 9.78). MCP export pre-clips to the
+//             1440 page frame → asset ships 1440×701; side bleed
+//             baked out (invisible at 1440 — section clips
+//             overflow anyway). Anchored calc(50% − 720px):
+//             exact at 1440, centered on wider viewports.
+//  Cluster  · node 5:38004 (582×470.8, fixed) — 3 dashed orbit
+//             ellipses + 6 app badges (Gmail / Slack / Dropbox /
+//             Outlook / Google Drive / Google Calendar) + central
+//             whitepace mark — exported as ONE svg.
+//  Heading  · node 5:38081 (694×468 · flex-1 · gap 60):
+//    Text-block · node 5:38082 (gap 24 · H2 + 2-line paragraph),
+//                 all text white on navy
+//    Btn        · node 5:38085 (194×63 · "Read more",
+//                 btn--primary + btn--pad-section)
+//  Columns: 582 + 100 + 694 = 1376 (container). No swoosh marker
+//  in this section. Wrap pre-measured (Inter metrics, box 694):
+//  H1 "Work with Your / Favorite Apps Using / whitepace"
+//  (L2 683.9px), P breaks after "…1000+ apps" (L1 656.3px) —
+//  matches Figma, no knife-edges, no trailing-space hacks.
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.apps {
+  position: relative;
+  isolation: isolate;                  // keeps z-index:-1 waves above the
+                                       // section's own navy background
+  overflow: hidden;                    // waves bleed ±45px past the frame
+  padding-block: $section-rhythm;      // 140 · node 5:37936
+  background-color: $color-secondary;  // #043873 · Secondary/500
+
+  // ---- full-width wave-lines decor · node 5:37937 ----
+  // NOTE: the MCP svg export came back pre-clipped to the page frame
+  // (1440×701), so the ±45px side bleed is baked out. Visually identical
+  // at 1440 — the bleed was clipped by overflow:hidden anyway.
+  &__waves {
+    position: absolute;
+    z-index: -1;                       // behind content (locked 2026-07-15)
+    top: 9.78px;
+    left: calc(50% - 720px);           // = 0 at 1440, centered when wider
+    width: 1440px;
+    height: 701px;                     // export intrinsic (node 700.4)
+    max-width: none;                   // reset sets img max-width:100%
+  }
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;           // both columns top-align at y 140
+    gap: 100px;                        // cluster ↔ heading · node 5:37936
+  }
+
+  // ---- left column · integration cluster · node 5:38004 ----
+  &__media {
+    flex: 0 0 auto;
+    width: 582px;
+    height: 470.8px;
+  }
+
+  &__cluster {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  // ---- right column · node 5:38081 ----
+  &__content {
+    flex: 1 0 0;                       // 694 at 1440
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;                         // text-block ↔ button
+  }
+
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                         // h2 ↔ paragraph · node 5:38082
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style
+    font-size: $fs-h1;                 // section H2s use the H1 style (locked)
+    font-weight: 700;
+    line-height: normal;               // 87px/line @72 · node 5:38083
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-white;               // white on navy
+    margin: 0;
+  }
+
+  &__copy {
+    font-family: $font-body;           // Inter Regular 18/30 · node 5:38084
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    color: $color-white;
+    margin: 0;
+  }
+}
