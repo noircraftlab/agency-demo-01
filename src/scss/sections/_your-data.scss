@@ -1,0 +1,94 @@
+// =============================================================
+//  SECTION · Your Data — "100% your data"
+//  Source: node 5:37777 (frame 1440×661.13 · py 140 / px 32 · row, center)
+//  Heading      · node 5:37778 (695×324 · flex-1 · gap 60 · items start)
+//  Text-block   · node 5:37779 (695×201 · gap 24 · H2 + 3-line paragraph)
+//  Swoosh       · node 5:37780 (351×36.6 · yellow marker under "your data")
+//  Btn          · node 5:37811 (197×63 · "Read more", btn--pad-section)
+//  Diagram      · node 5:37817 (681×381.13, fixed) — dashed arc/lines,
+//                 5 white cards w/ shadows, icons, dots, logo — exported
+//                 as ONE svg. Export viewBox 752×400 (shadow bleed baked
+//                 in): content offset −39 x / −3.31 y vs node origin.
+//  Columns touch: 695 + 681 = 1376 (container), no gap.
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.your-data {
+  padding-block: $section-rhythm;      // 140 · node 5:37777
+
+  &__inner {
+    display: flex;
+    align-items: center;               // diagram taller than text → centers
+  }
+
+  // ---- left column · node 5:37778 ----
+  &__text {
+    position: relative;
+    flex: 1 0 0;                       // 695 at 1440
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;                         // text-block ↔ button
+  }
+
+  &__text-block {
+    position: relative;                // anchors swoosh
+    display: flex;
+    flex-direction: column;
+    gap: 24px;                         // h2 ↔ paragraph
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style
+    font-size: $fs-h1;                 // section H2s use the H1 style (locked)
+    font-weight: 700;
+    line-height: normal;               // 87px/line @72 · node 5:37809
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-text;                // #212529
+    margin: 0;
+  }
+
+  &__copy {
+    font-family: $font-body;           // Inter Regular 18/30 · node 5:37810
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;       // 30
+    letter-spacing: $tracking-tight;   // −0.36px @18
+    color: $color-text;
+    margin: 0;
+    // Figma wrap (3 lines): "…so you'll always | …your notes and | ensure…"
+    // L1 ≈ 693.8/695px — knife-edge, QA check.
+  }
+
+  // ---- yellow marker swoosh under "your data" · node 5:37780 ----
+  &__swoosh {
+    position: absolute;
+    z-index: -1;                       // behind heading text (locked 2026-07-15)
+    top: 69.28px;                      // y within text-block · node 5:37780
+    left: 224.95px;
+    width: 351.21px;
+    height: 36.56px;
+  }
+
+  // ---- right column · diagram · node 5:37817 (681×381.13) ----
+  // Wrapper keeps the NODE footprint so flex layout matches Figma;
+  // the img carries the shadow bleed and overhangs by the export offset.
+  &__media {
+    position: relative;
+    flex: 0 0 auto;
+    width: 681px;
+    height: 381.13px;
+  }
+
+  &__graphic {
+    position: absolute;
+    top: -3.31px;                      // export bleed offsets (see header)
+    left: -39px;
+    width: 752px;
+    height: 400px;
+    max-width: none;                   // reset sets img max-width:100%
+  }
+}
