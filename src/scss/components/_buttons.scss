@@ -89,3 +89,11 @@
   font-family: $font-montserrat;
   letter-spacing: normal;
 }
+
+// Footer CTA · node 5:38203 (186×60) — тот же pad-section, но текст
+// шагает вниз до Paragraph/P3/Regular · Inter 16/20 (не 18 Medium).
+.btn--face-p3 {
+  font-size: $fs-p3;                    // 16
+  font-weight: 400;
+  line-height: $lh-p3-regular;          // 20
+}

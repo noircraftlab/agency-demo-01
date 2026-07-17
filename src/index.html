@@ -516,12 +516,91 @@
       </div>
     </section>
 
-    <!-- Phase 3 build order (SPEC §2, remaining sections):     -->
-    <!-- 11 · Footer               · node 5:38172               -->
+    <!-- Phase 3 complete: all 11 sections built (SPEC §2)      -->
   </main>
 
+  <!-- ============================================================
+       SECTION · Footer · node 5:38172  (1440×474 · navy ·
+       pt 140 / pb 32). Divider #2E4E73 = $color-secondary-400 —
+       CSS ::after, без ассета. Логотип: переиспользован
+       logo-icon.svg из header, wordmark белый.
+       ============================================================ -->
   <footer class="site-footer">
-    <div class="container"><!-- footer — Phase 3, node 5:38172 --></div>
+    <div class="container site-footer__inner">
+
+      <div class="site-footer__info">
+        <div class="site-footer__brand">
+          <a class="site-footer__logo" href="#" aria-label="Whitepace — home">
+            <!-- белый вариант иконки · node 5:38177 (header-версия синяя) -->
+            <img src="../assets/img/logo-icon-white.svg" alt="" width="37" height="29">
+            <span class="site-footer__logo-text">whitepace</span>
+          </a>
+          <p class="site-footer__tagline">whitepace was created for the new ways we live and work. We make a better workspace around the world</p>
+        </div>
+
+        <nav class="site-footer__col" aria-label="Product">
+          <p class="site-footer__col-title">Product</p>
+          <a class="site-footer__link site-footer__link--active" href="#">Overview</a>
+          <a class="site-footer__link" href="#">Pricing</a>
+          <a class="site-footer__link" href="#">Customer stories</a>
+        </nav>
+
+        <nav class="site-footer__col site-footer__col--g16" aria-label="Resources">
+          <p class="site-footer__col-title">Resources</p>
+          <a class="site-footer__link" href="#">Blog</a>
+          <a class="site-footer__link" href="#">Guides &amp; tutorials</a>
+          <a class="site-footer__link" href="#">Help center</a>
+        </nav>
+
+        <nav class="site-footer__col site-footer__col--g16" aria-label="Company">
+          <p class="site-footer__col-title">Company</p>
+          <a class="site-footer__link" href="#">About us</a>
+          <a class="site-footer__link" href="#">Careers</a>
+          <a class="site-footer__link" href="#">Media kit</a>
+        </nav>
+
+        <div class="site-footer__cta">
+          <p class="site-footer__cta-title">Try It Today</p>
+          <p class="site-footer__cta-copy">Get started for free. Add your whole team as your needs grow.</p>
+          <a class="btn btn--primary btn--pad-section btn--face-p3" href="#">
+            Start today
+            <!-- arrow icon · Group 214, 14×14 -->
+            <svg class="btn__icon btn__icon--md" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <div class="site-footer__legal">
+          <button class="site-footer__lang" type="button">
+            <img src="../assets/img/footer-globe.svg" alt="" width="19" height="19">
+            English
+            <!-- chevron · vector 5:38218 (12×6), инлайн по паттерну header -->
+            <svg class="site-footer__lang-chevron" viewBox="0 0 12 6" fill="none" aria-hidden="true">
+              <path d="M1 0.5L6 5L11 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <a class="site-footer__legal-link" href="#">Terms &amp; privacy</a>
+          <a class="site-footer__legal-link" href="#">Security</a>
+          <a class="site-footer__legal-link" href="#">Status</a>
+          <p class="site-footer__copyright">©2021 Whitepace LLC.</p>
+        </div>
+        <div class="site-footer__social">
+          <a class="site-footer__social-link" href="#" aria-label="Facebook">
+            <img src="../assets/img/footer-facebook.svg" alt="" width="9" height="17">
+          </a>
+          <a class="site-footer__social-link" href="#" aria-label="Twitter">
+            <img src="../assets/img/footer-twitter.svg" alt="" width="17" height="14">
+          </a>
+          <a class="site-footer__social-link" href="#" aria-label="LinkedIn">
+            <img src="../assets/img/footer-linkedin.svg" alt="" width="15" height="15">
+          </a>
+        </div>
+      </div>
+
+    </div>
   </footer>
 
   <script src="./js/main.js" defer></script>

@@ -1,3 +1,240 @@
+// =============================================================
+//  SECTION · Footer
+//  Source: node 5:38172 (frame 1440×474 · navy Secondary/500 ·
+//          pt 140 / pb 32 / px 32 · column · gap 100)
+//  Info row · node 5:38174 (gap 100, hug 1305; исходный фрейм
+//          заявляет 1480 — дизайнерская неряшливость, контент
+//          левовыровнен): Brand 240 → 3 nav-колонки → CTA 259.
+//    Brand   · node 5:38175 (gap 15): логотип (icon 37×29 из
+//              header-ассета + wordmark Bold 28 БЕЛЫЙ — в header
+//              он primary, здесь модификатор) + tagline 18/30
+//              #F7F7EE ($footer-paper) · 240 · 4 строки.
+//    Columns · nodes 5:38185 / 5:38190 / 5:38195: title P2/Bold
+//              18/22 white + links P3 16/20; gap 15 у Product,
+//              16 у Resources/Company — неконсистентность
+//              источника, сохранена verbatim. "Overview" —
+//              активная ссылка $color-accent.
+//    CTA     · node 5:38200 (gap 23 · 259): H5 28/36 −2% +
+//              copy 16/20 ×2 строки + Btn-try 186×60
+//              (btn--primary + pad-section + face-p3).
+//  Divider  · node 5:38233: 1336×1, stroke #2E4E73 =
+//             $color-secondary-400 (совпал с токеном!) ·
+//             y 248.92 от верха контента — CSS-бордер через
+//             ::after, SVG-ассет не нужен.
+//  Bottom   · node 5:38209 (1376×20 · space-between):
+//    слева gap 60: язык (глобус 19 + English + шеврон 12×6
+//    инлайном) + Terms/Security/Status + ©2021;
+//    справа gap 32: FB 9×17 / TW 17×14 / LI 15×15 (#F7F7EE).
+//  Wrap pre-measured: tagline 4 строки (max 234.1/240),
+//  CTA-copy 2 строки (max 236.8/259) — без лезвий; все
+//  одиночные строки под nowrap ("Terms & privacy" 118.5 >
+//  хаг-бокс 117 по метрике — nowrap страхует).
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
 @use '../abstracts' as *;
-// SPEC §2.11 — Footer (4 columns, language selector, legal, social). Built in Phase 3.
-.site-footer {}
+
+// Off-white "paper" — NOT in SPEC §3 token set; per-node
+// (tagline 5:38184 + заливки соц-иконок), per charter §3.5.
+$footer-paper: #f7f7ee;
+
+.site-footer {
+  padding: $section-rhythm 0 32px;      // pt 140 / pb 32
+  background-color: $color-secondary;   // #043873
+
+  &__inner {
+    position: relative;                 // якорь для разделителя
+    display: flex;
+    flex-direction: column;
+    gap: 100px;                         // Info ↔ Bottom
+
+    // divider · node 5:38233 · #2E4E73 = $color-secondary-400
+    &::after {
+      content: '';
+      position: absolute;
+      top: 248.92px;                    // 66.92px ниже Info (h 182)
+      left: 0;
+      width: 1336px;
+      height: 1px;
+      background-color: $color-secondary-400;
+    }
+  }
+
+  // ---- top row · node 5:38174 ----
+  &__info {
+    display: flex;
+    align-items: flex-start;
+    gap: 100px;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 240px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;                          // icon 37 → text x47
+    text-decoration: none;
+  }
+
+  &__logo-text {
+    font-family: $font-body;            // Inter Bold 28 · node 5:38183
+    font-size: $fs-h5;
+    font-weight: 700;
+    line-height: normal;
+    color: $color-white;                // в header — primary; тут белый
+  }
+
+  &__tagline {
+    font-family: $font-body;            // P2/Regular 18/30 · node 5:38184
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;
+    letter-spacing: $tracking-tight;
+    color: $footer-paper;
+    margin: 0;
+  }
+
+  // ---- link columns · nodes 5:38185 / 5:38190 / 5:38195 ----
+  &__col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;                          // Product · node 5:38185
+
+    &--g16 { gap: 16px; }               // Resources / Company —
+  }                                     // неконсистентность источника
+
+  &__col-title {
+    font-family: $font-body;            // P2/Bold 18 · lh 22
+    font-size: $fs-p2;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__link {
+    font-family: $font-body;            // P3/Regular 16/20
+    font-size: $fs-p3;
+    font-weight: 400;
+    line-height: $lh-p3-regular;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $dur $ease;
+
+    // hover в статике источника не задан — минимальный UX,
+    // консистентный с активным состоянием
+    &:hover { color: $color-accent; }
+
+    &--active { color: $color-accent; } // Overview · node 5:38187
+  }
+
+  // ---- CTA column · node 5:38200 ----
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    width: 259px;
+  }
+
+  &__cta-title {
+    font-family: $font-body;            // Header/H5 · 28/36 · −2%
+    font-size: $fs-h5;
+    font-weight: 700;
+    line-height: $lh-h5;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__cta-copy {
+    font-family: $font-body;            // P3/Regular 16/20
+    font-size: $fs-p3;
+    font-weight: 400;
+    line-height: $lh-p3-regular;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    margin: 0;
+  }
+
+  // ---- bottom row · node 5:38209 ----
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__legal {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  &__lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;                           // node 5:38211
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    font-family: $font-body;            // P3/Regular 16/20
+    font-size: $fs-p3;
+    font-weight: 400;
+    line-height: $lh-p3-regular;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    white-space: nowrap;
+  }
+
+  &__lang-chevron {
+    width: 12px;                        // vector 5:38218 (12×6)
+    height: 6px;
+    margin-inline: 4px;                 // бокс Arrow 20×14, вектор x4
+  }
+
+  &__legal-link {
+    font-family: $font-body;
+    font-size: $fs-p3;
+    font-weight: 400;
+    line-height: $lh-p3-regular;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $dur $ease;
+
+    &:hover { color: $color-accent; }
+  }
+
+  &__copyright {
+    font-family: $font-body;
+    font-size: $fs-p3;
+    font-weight: 400;
+    line-height: $lh-p3-regular;
+    letter-spacing: $tracking-tight;
+    color: $color-white;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 32px;                          // node 5:38223
+  }
+
+  &__social-link {
+    display: flex;
+  }
+}
