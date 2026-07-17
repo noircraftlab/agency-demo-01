@@ -1,0 +1,65 @@
+// =============================================================
+//  SECTION · Our Sponsors
+//  Source: node 5:37876 (frame 1440×538 · py 140 / px 32 · column,
+//          center, gap 100)
+//  H2       · node 5:37906 (1376×87, centered, swoosh decor)
+//  Swoosh   · node 5:37877 (338.16×42.47 · yellow, under "sponsors")
+//  Logo row · node 5:37907 (1376×71 · justify-between, items center):
+//            Apple 5:37909 (55.47×68) · Microsoft 5:37914 (287×62)
+//            Slack 5:37921 (280×71)   · Google 5:37929 (211×69.81)
+//            (gaps between logos ≈180.8 — pure justify-between)
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+.sponsors {
+  padding-block: $section-rhythm;      // 140 · node 5:37876
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;                        // heading ↔ logo row · node 5:37876
+  }
+
+  // ---- heading · node 5:37906 ----
+  &__heading {
+    position: relative;                // anchors swoosh
+    width: 100%;
+    text-align: center;
+  }
+
+  &__title {
+    font-family: $font-body;           // Inter Bold 72 — Header/H1 style
+    font-size: $fs-h1;                 // section H2s use the H1 style (locked)
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: $tracking-tight;   // −1.44px @72
+    color: $color-text;                // #212529
+    margin: 0;
+  }
+
+  // yellow marker swoosh under "sponsors" · node 5:37877
+  &__swoosh {
+    position: absolute;
+    z-index: -1;                       // behind heading text (locked 2026-07-15)
+    top: 65.71px;                      // section 205.71 − heading top 140
+    left: 600.12px;                    // section 632.12 − container inset 32
+    width: 338.16px;
+    height: 42.47px;
+  }
+
+  // ---- logo row · node 5:37907 ----
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;               // logo heights differ, centers align
+    width: 100%;
+  }
+
+  // explicit sizes per Figma nodes (svg intrinsic sizes are rounded)
+  &__logo--apple     { width: 55.47px;  height: 68px; }
+  &__logo--microsoft { width: 287px;    height: 62px; }
+  &__logo--slack     { width: 280px;    height: 71px; }
+  &__logo--google    { width: 211px;    height: 69.81px; }
+}
