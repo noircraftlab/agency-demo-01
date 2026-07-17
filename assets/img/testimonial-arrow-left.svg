@@ -1,0 +1,27 @@
+<svg width="145" height="145" viewBox="0 0 145 145" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Landing page V2 / desktop / 1440px">
+<g id="Testimonial">
+<g id="Slider">
+<g id="Left-Arrow">
+<g id="Ellipse 4" filter="url(#filter0_d_5_34420)">
+<circle cx="72.5" cy="68.5" r="37.5" fill="#E6F1FE"/>
+</g>
+<path id="Arrow" d="M80 54.3771L65.1886 69.1886L80 84" stroke="#4F9CF9" stroke-width="1.5" stroke-linecap="square"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_5_34420" x="0" y="0" width="145" height="145" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="15" operator="erode" in="SourceAlpha" result="effect1_dropShadow_5_34420"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="25"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5_34420"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5_34420" result="shape"/>
+</filter>
+</defs>
+</svg>

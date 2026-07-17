@@ -1,0 +1,195 @@
+// =============================================================
+//  SECTION · Testimonials — "See what our trusted users Say"
+//  Source: node 5:38091 (frame 1440×1042 · py 140 / px 32 ·
+//          white bg · column · center · gap 60)
+//  Heading  · node 5:38121 (1376×87 · Header/H1 style · #212529
+//             · centered single line, 1052.9px measured)
+//  Swoosh   · node 5:38092 (256.11×49.95 → export 257×50) —
+//             yellow brush under "trusted"; x 654.17 / y 217.8
+//             in section coords → left 622.17 / top 77.8
+//             relative to the heading wrapper (container inner).
+//  Cards    · node 5:38122 (1376×480 · row · gap 32): 3 × Client
+//             flex-1 (437.33×480 · radius 10 · px 40 py 60 ·
+//             column gap 49).
+//             Card 1 (5:38123): white bg + drop-shadow
+//               10px 10px 25px rgba(0,0,0,.08), ink #01252A
+//             Cards 2–3 (5:38137 / 5:38151): bg Primary/500,
+//               white text, no shadow
+//    Comment (gap 35): avatar 70px circle (png @2x, alpha-cut)
+//               + quote 18/30 ×5 lines
+//    Meta    (gap 53): Name col (194, gap 4: Bold 18/22 +
+//               Regular 18/30) + 5 stars 15px gap 7 (#FFE492
+//               = $color-accent)
+//  Slider   · node 36:26319 (250×75 · gap 100): 2 круга 75px,
+//             export 145×145 (тень +35px по кругу) — статичные
+//             кнопки в фазе 3, JS-поведение = фаза 4.
+//  Parked leftovers 5:38165 / 5:38169 (стрелки за краями фрейма,
+//  x 1558 и x −126.8) на 1440 невидимы — осознанно опущены.
+//  Wrap pre-measured (Inter metrics): quote box widened 350→353
+//  (see &__quote), имя/роль nowrap (роль 196.5px > бокс 194 —
+//  лезвие, Figma хаг-рендерит без переноса).
+//  Captured 2026-07-17 via get_design_context + get_metadata
+// =============================================================
+@use '../abstracts/tokens' as *;
+
+// Card-1 ink — NOT in SPEC §3 token set; single per-node value
+// (nodes 5:38126 / 5:38129 / 5:38130), per charter §3.5.
+$testimonials-ink: #01252a;
+
+.testimonials {
+  position: relative;
+  isolation: isolate;              // безопасный z-index:-1 для swoosh
+  padding-block: $section-rhythm;  // 140 · node 5:38091
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;                     // heading ↔ cards ↔ slider
+  }
+
+  // ---- heading + swoosh · nodes 5:38121 / 5:38092 ----
+  &__heading {
+    position: relative;
+    align-self: stretch;           // 1376 — якорь для swoosh
+  }
+
+  &__title {
+    font-family: $font-body;       // Header/H1 · Inter Bold 72
+    font-size: $fs-h1;
+    font-weight: 700;
+    line-height: normal;           // 87px
+    letter-spacing: $tracking-tight;
+    color: $color-text;            // #212529
+    text-align: center;
+    margin: 0;
+  }
+
+  &__swoosh {
+    position: absolute;
+    z-index: -1;                   // мазок ПОД текстом (locked 2026-07-15)
+    top: 77.8px;                   // y 217.8 − секционные 140
+    left: 622.17px;                // x 654.17 − container pad 32
+    width: 257px;
+    height: 50px;
+  }
+
+  // ---- cards row · node 5:38122 ----
+  &__grid {
+    display: flex;
+    gap: 32px;                     // 3 × 437.33 + 2 × 32 = 1376
+    align-self: stretch;
+  }
+
+  &__card {
+    flex: 1 0 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 49px;                     // comment ↔ meta
+    padding: 60px 40px;
+    border-radius: 10px;           // node 5:38123 (не токен $radius 8)
+    background-color: $color-white;
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.08);  // filter0_d, card 1
+    color: $testimonials-ink;
+
+    &--accent {                    // nodes 5:38137 / 5:38151
+      background-color: $color-primary;  // #4F9CF9
+      box-shadow: none;
+      color: $color-white;
+    }
+  }
+
+  &__comment {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;                     // avatar ↔ quote · node 5:38124
+  }
+
+  &__avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;            // страховка поверх альфа-круга png
+  }
+
+  &__quote {
+    // Бокс в источнике 350; расширен до 353 из-за лезвия: строка 3
+    // "…intuitive to get a new event" = ~350.7px по метрике Figma —
+    // при 350 браузер может увести "event" на строку 4. 353 даёт
+    // детерминированные Figma-переносы (5 строк) в обеих метриках;
+    // визуально неотличимо (рваный правый край).
+    width: 353px;
+    font-family: $font-body;       // Paragraph/P2/Regular · 18/30
+    font-size: $fs-p2;
+    font-weight: 400;
+    line-height: $lh-p2-regular;
+    letter-spacing: $tracking-tight;
+    margin: 0;
+  }
+
+  // ---- name + stars · node 5:38127 ----
+  &__meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 53px;                     // Name(194) + 53 + Stars(103) = 350
+    width: 350px;
+  }
+
+  &__person {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 194px;
+  }
+
+  &__name {
+    font-family: $font-body;       // Paragraph/P2/Bold · 18 · lh 22
+    font-size: $fs-p2;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: $tracking-tight;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  &__role {
+    font-family: $font-body;       // 18/30 · лезвие: 196.5px > бокс 194,
+    font-size: $fs-p2;             // Figma хаг-рендерит одной строкой →
+    font-weight: 400;              // nowrap страхует от переноса
+    line-height: $lh-p2-regular;
+    letter-spacing: $tracking-tight;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 7px;                      // 5 × 15 + 4 × 7 = 103 · node 5:38131
+  }
+
+  // ---- slider controls · node 36:26319 ----
+  // Статичны в фазе 3 (превью); поведение подключается в фазе 4.
+  &__slider {
+    display: flex;
+    gap: 100px;
+  }
+
+  &__nav {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      top: -35px;                  // экспорт 145×145 = нода 75 + тень 35
+      left: -35px;                 // по кругу (запечённый drop-shadow)
+      width: 145px;
+      height: 145px;
+      max-width: none;
+    }
+  }
+}
