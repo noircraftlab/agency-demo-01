@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "sass --watch src/scss/main.scss dist/css/main.css --style=expanded --source-map",
     "build": "sass src/scss/main.scss dist/css/main.css --style=expanded --source-map",
-    "build:prod": "sass src/scss/main.scss dist/css/main.min.css --style=compressed --no-source-map"
+    "build:prod": "sass src/scss/main.scss dist/css/main.min.css --style=compressed --no-source-map",
+    "build:wp": "sass src/scss/main.scss theme/agency-demo-01/assets/css/main.css --style=expanded --source-map && npm run sync:wp",
+    "dev:wp": "sass --watch src/scss/main.scss theme/agency-demo-01/assets/css/main.css --style=expanded --source-map",
+    "sync:wp": "xcopy /E /Y /I /Q assets\\img theme\\agency-demo-01\\assets\\img && xcopy /E /Y /I /Q src\\js theme\\agency-demo-01\\assets\\js"
   },
   "devDependencies": {
     "sass": "^1.77.8"

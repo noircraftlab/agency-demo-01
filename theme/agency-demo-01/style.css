@@ -1,0 +1,26 @@
+/*
+Theme Name:        Agency Demo 01 — Whitepace
+Theme URI:         https://github.com/noircraftlab/agency-demo-01
+Author:            Noircraft Lab
+Author URI:        https://noircraftlab.com
+Description:       Pixel-perfect WordPress Classic Theme build of the "Whitepace — SaaS Landing Page V2" Figma design (Al Razi Siam, CC BY 4.0). White-label proof-of-work: Figma file in → fixed quote → hand-coded theme out. No page builders, no Bootstrap, no jQuery.
+Version:           0.1.0
+Requires at least: 6.5
+Tested up to:      7.0
+Requires PHP:      8.2
+License:           GNU General Public License v2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       agency-demo-01
+Tags:              one-column, custom-theme
+*/
+
+/*
+  This file intentionally carries the theme header only.
+  Styles are authored in /src/scss (Dart Sass, 7-1-lite, BEM) and
+  compiled into assets/css/main.css — enqueued in functions.php.
+
+  Design credit: "Whitepace — SaaS Landing Page V2" by Al Razi Siam,
+  CC BY 4.0 · https://www.figma.com/community/file/1035203688168086460
+  Freepik raster illustrations from the original are replaced with
+  free unDraw equivalents (documented in the repository README).
+*/
