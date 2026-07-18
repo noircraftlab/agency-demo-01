@@ -4,8 +4,12 @@
 //  Layout: px 32 / py 16 · logo left · nav+actions right
 //  ⚠ Nav links use DM Sans Medium 18/23 in source (nodes 5:38247…5:38256)
 //    — differs from SPEC §3 (Inter-only). Flagged in session log.
+//  Phase 4: burger + mobile dropdown panel (<lg). Not in the 1440
+//  source frame — mechanics only; visual polish lands in Phase 6
+//  against the Breakpoint V2 frames.
 // =============================================================
 @use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
 
 // Nav font is section-local on purpose: SPEC §3 tokens stay verbatim
 // (charter §3.5); DM Sans appears in source only on header nav links.
@@ -13,6 +17,7 @@ $font-nav: 'DM Sans', $font-body;
 
 .site-header {
   background-color: $color-white;   // frame has no own fill; page bg is white (5:37139)
+  position: relative;               // anchor for the <lg dropdown panel
 
   &__inner {
     display: flex;
@@ -42,6 +47,22 @@ $font-nav: 'DM Sans', $font-body;
     font-weight: 700;
     line-height: normal;
     color: $color-primary;
+  }
+
+  // ---- Burger (Phase 4) — hidden on desktop, shown <lg ----
+  &__burger {
+    display: none;                  // desktop: never rendered visually
+    padding: 8px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    color: $color-secondary;
+  }
+
+  &__burger-icon {
+    display: block;
+    width: 24px;
+    height: 18px;
   }
 
   // ---- Right group · Frame 375 (nav 551.5 → gap 75.5 → buttons) ----
@@ -85,5 +106,45 @@ $font-nav: 'DM Sans', $font-body;
     display: flex;
     align-items: center;
     gap: 24px;
+  }
+
+  // =========================================================
+  //  <lg (1152px): burger + dropdown panel — MECHANICS ONLY.
+  //  Media query is max-width on purpose: desktop (≥lg, incl.
+  //  the 1440 QA width) compiles to the exact pre-Phase-4 CSS.
+  //  Phase 6 restyles this panel per the Breakpoint V2 frames.
+  // =========================================================
+  @media (max-width: 1151px) {
+    &__burger { display: block; }
+
+    &__right {
+      display: none;                // closed state
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 24px;
+      padding: 24px $container-pad 32px;
+      background-color: $color-white;
+      box-shadow: 0 12px 24px rgba($color-secondary-1000, 0.12);
+    }
+
+    &.is-open &__right { display: flex; }
+
+    &__nav {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    &__nav-link { justify-content: space-between; }
+
+    &__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 }

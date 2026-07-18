@@ -23,27 +23,36 @@
         <span class="site-header__logo-text">whitepace</span>
       </a>
 
-      <div class="site-header__right">
+      <!-- Burger (Phase 4) — hidden ≥lg via CSS; mechanics in main.js -->
+      <button class="site-header__burger" type="button"
+              aria-expanded="false" aria-controls="header-panel"
+              aria-label="Open menu">
+        <svg class="site-header__burger-icon" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+          <path d="M1 1H23M1 9H23M1 17H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="site-header__right" id="header-panel">
         <nav class="site-header__nav" aria-label="Main">
-          <a class="site-header__nav-link" href="#">
+          <a class="site-header__nav-link" href="#products">
             Products
             <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
               <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="site-header__nav-link" href="#">
+          <a class="site-header__nav-link" href="#solutions">
             Solutions
             <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
               <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="site-header__nav-link" href="#">
+          <a class="site-header__nav-link" href="#resources">
             Resources
             <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
               <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="site-header__nav-link" href="#">
+          <a class="site-header__nav-link" href="#pricing">
             Pricing
             <svg class="site-header__nav-chevron" viewBox="0 0 9 4" fill="none" aria-hidden="true">
               <path d="M0.5 0.5L4.5 3.5L8.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -103,7 +112,7 @@
     <!-- 2+3 · Work Management · node 5:38267                  -->
     <!--       (Project Management + Work Together rows)       -->
     <!-- ===================================================== -->
-    <section class="work-management">
+    <section class="work-management" id="products">
       <div class="container work-management__inner">
 
         <!-- 2 · Project Management · node 5:38268 -->
@@ -159,7 +168,7 @@
     <!-- ===================================================== -->
     <!-- 4 · Customise · node 5:37351                          -->
     <!-- ===================================================== -->
-    <section class="customise">
+    <section class="customise" id="solutions">
       <div class="container customise__inner">
 
         <div class="customise__headline">
@@ -196,7 +205,7 @@
     <!-- ===================================================== -->
     <!-- 5 · Pricing · node 5:37564                            -->
     <!-- ===================================================== -->
-    <section class="pricing">
+    <section class="pricing" id="pricing">
       <div class="container pricing__inner">
 
         <div class="pricing__heading">
@@ -410,7 +419,7 @@
          orbits + Gmail/Slack/Dropbox/Outlook/Drive/Calendar badges
          + central whitepace mark, exported as ONE svg.
          ============================================================ -->
-    <section class="apps">
+    <section class="apps" id="resources">
       <img class="apps__waves" src="../assets/img/apps-waves.svg" alt="" aria-hidden="true" width="1440" height="701" loading="lazy">
       <div class="container apps__inner">
         <div class="apps__media">
@@ -541,7 +550,7 @@
         <nav class="site-footer__col" aria-label="Product">
           <p class="site-footer__col-title">Product</p>
           <a class="site-footer__link site-footer__link--active" href="#">Overview</a>
-          <a class="site-footer__link" href="#">Pricing</a>
+          <a class="site-footer__link" href="#pricing">Pricing</a>
           <a class="site-footer__link" href="#">Customer stories</a>
         </nav>
 

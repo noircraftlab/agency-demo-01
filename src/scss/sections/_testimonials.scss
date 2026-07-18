@@ -183,6 +183,12 @@ $testimonials-ink: #01252a;
     background: none;
     cursor: pointer;
 
+    // hover в статике источника не задан — лёгкий scale поверх
+    // экспортированного круга с запечённой тенью (Phase 4)
+    transition: transform $dur $ease;
+    &:hover { transform: scale(1.06); }
+    &:active { transform: scale(0.97); }
+
     img {
       position: absolute;
       top: -35px;                  // экспорт 145×145 = нода 75 + тень 35

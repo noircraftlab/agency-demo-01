@@ -195,6 +195,11 @@ $footer-paper: #f7f7ee;
     letter-spacing: $tracking-tight;
     color: $color-white;
     white-space: nowrap;
+    transition: color $dur $ease;
+
+    // hover в статике источника не задан — минимальный UX,
+    // консистентный с legal-links (Phase 4)
+    &:hover { color: $color-accent; }
   }
 
   &__lang-chevron {
@@ -236,5 +241,10 @@ $footer-paper: #f7f7ee;
 
   &__social-link {
     display: flex;
+    transition: opacity $dur $ease;
+
+    // иконки — <img> с запечённой белой заливкой, currentColor
+    // недоступен → hover через opacity (Phase 4, минимальный UX)
+    &:hover { opacity: 0.7; }
   }
 }

@@ -6,3 +6,12 @@ body { background: $color-white; }
   outline: 2px solid $color-primary;
   outline-offset: 2px;
 }
+
+// ---- Anchor navigation (Phase 4) ----
+// Smooth scroll for header-nav anchors; the reset already forces
+// scroll-behavior: auto under prefers-reduced-motion.
+html { scroll-behavior: smooth; }
+
+// Breathing room above a section when jumped to via #anchor.
+// Header is static (not sticky), so this is comfort, not overlap-fix.
+[id] { scroll-margin-top: 24px; }

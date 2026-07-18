@@ -1,7 +1,8 @@
 /* agency-demo-01 — vanilla JS entry.
    Phase 4 · step 1: Testimonials slider (DOM rotation, fade,
    keyboard ←/→, prefers-reduced-motion) + href="#" jump guard.
-   Mobile nav — next Phase 4 step. */
+   Phase 4 · step 2: Mobile nav (burger toggle, Escape, outside
+   click, auto-close on anchor click / desktop resize). */
 (() => {
   'use strict';
 
@@ -55,7 +56,9 @@
   };
 
   /* ---------- href="#" jump guard ----------
-     Static demo: placeholder links must not scroll to top. */
+     Static demo: placeholder links must not scroll to top.
+     Matches ONLY the bare "#" — real anchors (#pricing etc.)
+     pass through untouched. */
   const initHashGuard = () => {
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a[href="#"]');
@@ -63,8 +66,56 @@
     });
   };
 
+  /* ---------- Mobile nav (Phase 4 · step 2) ----------
+     Burger toggles .is-open on .site-header; the dropdown panel
+     itself is pure CSS (<lg media query in _header.scss).
+     Desktop ≥lg: burger is display:none — this code idles. */
+  const initMobileNav = () => {
+    const header = document.querySelector('.site-header');
+    const burger = document.querySelector('.site-header__burger');
+    const panel  = document.querySelector('.site-header__right');
+    if (!header || !burger || !panel) return;
+
+    const DESKTOP = window.matchMedia('(min-width: 1152px)'); // = $breakpoints lg
+
+    const setOpen = (open) => {
+      header.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    };
+
+    burger.addEventListener('click', () => {
+      setOpen(!header.classList.contains('is-open'));
+    });
+
+    // Escape closes and returns focus to the burger
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.classList.contains('is-open')) {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+
+    // Click outside the header closes the panel
+    document.addEventListener('click', (e) => {
+      if (header.classList.contains('is-open') && !header.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+
+    // Following an in-page anchor from the panel closes it
+    panel.addEventListener('click', (e) => {
+      if (e.target.closest('a[href^="#"]')) setOpen(false);
+    });
+
+    // Growing past lg resets the state (panel is CSS-hidden anyway)
+    DESKTOP.addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     initTestimonialsSlider();
     initHashGuard();
+    initMobileNav();
   });
 })();
