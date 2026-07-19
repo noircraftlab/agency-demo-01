@@ -133,3 +133,132 @@
     user-select: none;
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:48749 · Mobile 320 = node 70:46007
+//  Swoosh geometry: horizontal from Figma frame insets (px at
+//  frame width, center-anchored → stable on fluid widths);
+//  vertical from fontTools line map (Inter Bold, wrap verified).
+// =============================================================
+
+.work-management {
+  @media (max-width: 1151px) {
+    padding-block: 100px;              // 768: py-100
+
+    &__row {
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;                       // Content gap · node 70:48750
+    }
+
+    &__row--together {
+      flex-direction: column-reverse;  // DOM: graphic first, frames: text first
+      gap: 100px;                      // node 70:49031
+    }
+
+    &__headline {
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    &__title { font-size: $fs-h3; }    // 54
+
+    // Illustration 561×349 · node 70:48814 (same AR as desktop 719/448)
+    &__media {
+      width: 561px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 719 / 448;
+    }
+
+    // WT composition · Figma 768 grid ≈454 wide · node 70:49095
+    &__graphic {
+      width: 454px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    // Concentric-circle decor: frames re-anchor it per heading with
+    // different crops — single desktop asset can't match. Hidden
+    // ≤1151; revisit at Phase 7 overlay pass. (Flagged in session log.)
+    &__decor { display: none; }
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80
+
+    &__row--together { gap: 60px; }    // node 70:46289
+
+    &__title { font-size: $fs-h4; }    // 36
+
+    &__media   { width: 286px; }       // node 70:46072
+    &__graphic { width: 279px; }       // node 70:46353
+  }
+}
+
+// =============================================================
+//  Phase 6 · Word-anchored swooshes (≤1151)
+//  Desktop keeps the px-locked <img>; below lg it hides and a
+//  duplicate img INSIDE a <span> around the underlined word takes
+//  over. Geometry in em (derived from the 72px reference) — the
+//  marker follows the word through any wrap and scales 54→36 free.
+// =============================================================
+.work-management {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+
+  &__mark-swoosh { display: none; }    // desktop: px-locked img rules
+
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band
+// (see per-file note). Two marks via --pm / --together modifiers.
+@media (max-width: 1439px) {
+  .work-management {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+    }
+    &__mark--pm .work-management__mark-swoosh {
+      left: 0.047em; top: 0.892em; width: 7.166em; height: 0.528em;
+    }
+    &__mark--together .work-management__mark-swoosh {
+      left: 0.205em; top: 0.906em; width: 4.64em; height: 0.355em;
+    }
+  }
+}
+
+// Phase 6 · Fluid guard 1152–1439 (see _hero). Stops the heading
+// column from overrunning the illustration ("Management" onto card).
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .work-management {
+    // Heading is flex:1 1 0 (size = free space). "Management" is one
+    // 510px word @72 that can't wrap, so min-width:0 let the column
+    // fall below it and the word overran the image. Pin the column to
+    // its content width and force the deficit onto the image instead.
+    &__headline {
+      flex-shrink: 0;
+      min-width: min-content;
+    }
+    &__media {
+      min-width: 0;
+      flex-shrink: 1;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 719 / 448;         // follow width, drop fixed 448
+    }
+    &__graphic {
+      min-width: 0;
+      flex-shrink: 1;
+      max-width: 100%;
+      height: auto;
+    }
+    &__media img { height: auto; }
+  }
+}

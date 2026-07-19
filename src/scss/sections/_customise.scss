@@ -85,3 +85,85 @@
     // illustration recolored to #4F9CF9 per charter §3.2; documented in README.
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:50363 · Mobile 320 = node 70:47621
+// =============================================================
+
+.customise {
+  @media (max-width: 1151px) {
+    padding-block: 100px;              // 768: py-100
+
+    &__inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;                       // Heading ↔ Illustration
+    }
+
+    &__headline {
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    &__title { font-size: $fs-h3; }    // 54
+
+    // Illustration 557×389 · node 107:71268 (same AR as desktop)
+    &__media {
+      width: 557px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 686 / 479;
+    }
+  }
+
+  // 768 frame keeps 32px side padding (unlike the 20px default band)
+  @media (min-width: 768px) and (max-width: 1151px) {
+    &__inner { padding-inline: 12px; } // container 20 + 12 = 32 · node 70:50363
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80
+
+    &__title { font-size: $fs-h4; }    // 36
+
+    &__media { width: 284.5px; }       // node 107:71763
+  }
+}
+
+// Phase 6 · Word-anchored swoosh (≤1151) — see _work-management.scss
+.customise {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+  &__mark-swoosh { display: none; }
+
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band.
+// px <img> is pixel-perfect only at 1440; below it, wrap changes,
+// so ≤1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px→54px→36px heading). See _work-management.
+@media (max-width: 1439px) {
+  .customise {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+      left: 0.0em; top: 0.846em; width: 5.809em; height: 0.437em;
+    }
+  }
+}
+
+// Phase 6 · Fluid guard 1152–1439 (see _hero).
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .customise {
+    &__inner { min-width: 0; }
+    &__headline, &__media { min-width: 0; flex-shrink: 1; }
+    &__media { max-width: 100%; }
+    &__media img { max-width: 100%; height: auto; }
+  }
+}

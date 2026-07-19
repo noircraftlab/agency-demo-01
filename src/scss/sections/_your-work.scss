@@ -69,7 +69,10 @@
     position: absolute;
     z-index: -1;                       // behind heading text (locked 2026-07-15)
     top: 61.09px;                      // y within text-block · node 5:37715
-    left: 763.5px;
+    // Phase 6: px → center-anchor (763.5−532 = +231.5 от центра
+    // text-block 1064). Рендер @1440 идентичен; на 1152–1439 блок
+    // жмётся (max-width:100%), мазок держится за «you are».
+    left: calc(50% + 231.5px);
     width: 314.03px;
     height: 23.96px;
   }
@@ -88,5 +91,64 @@
     width: 262px;
     height: 837px;
     pointer-events: none;
+  }
+}
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:50724 · Mobile 320 = node 70:47986
+//  Layout stays LEFT-aligned on both bands (unlike other sections).
+// =============================================================
+
+.your-work {
+  @media (max-width: 1151px) {
+    // section stays py-140 at 768 · node 70:50724
+
+    &__inner { align-items: flex-start; }
+
+    // Heading block fixed 604 in the 768 frame · node 70:50725
+    &__text-block { width: 604px; }
+
+    &__title { font-size: $fs-h3; }    // 54 — wraps "…everywhere / you are"
+
+    &__subtitle { text-align: left; }  // desktop centers; frames left-align
+
+    // Spiral decor: kept at desktop anchor (top-left crop) —
+    // approximation vs the frames' rotated rings; Phase 7 pass.
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 100px 140px;        // 320: pt-100 pb-140 · node 70:47986
+
+    &__text-block { width: 100%; }
+
+    &__title { font-size: $fs-h4; }    // 36 — wraps 3 lines
+
+  }
+}
+
+// Phase 6 · Word-anchored swoosh (≤1151) — see _work-management.scss
+.your-work {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+  &__mark-swoosh { display: none; }
+
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band.
+// px <img> is pixel-perfect only at 1440; below it, wrap changes,
+// so ≤1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px→54px→36px heading). See _work-management.
+@media (max-width: 1439px) {
+  .your-work {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+      left: -0.676em; top: 0.848em; width: 4.362em; height: 0.333em;
+    }
   }
 }

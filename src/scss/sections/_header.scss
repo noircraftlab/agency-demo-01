@@ -61,8 +61,8 @@ $font-nav: 'DM Sans', $font-body;
 
   &__burger-icon {
     display: block;
-    width: 24px;
-    height: 18px;
+    width: 42px;                    // Hum-menu 42×24 · nodes 70:48745 / 70:48364
+    height: 24px;
   }
 
   // ---- Right group · Frame 375 (nav 551.5 → gap 75.5 → buttons) ----
@@ -109,13 +109,23 @@ $font-nav: 'DM Sans', $font-body;
   }
 
   // =========================================================
-  //  <lg (1152px): burger + dropdown panel — MECHANICS ONLY.
-  //  Media query is max-width on purpose: desktop (≥lg, incl.
-  //  the 1440 QA width) compiles to the exact pre-Phase-4 CSS.
-  //  Phase 6 restyles this panel per the Breakpoint V2 frames.
+  //  Phase 6 · <lg (1152px): burger + dropdown panel — polished
+  //  against the Breakpoint V2 frames (768 = 70:48721, 320 =
+  //  70:48340). The frames show only the closed state (logo +
+  //  burger); the open panel keeps our Phase-4 pattern, restyled
+  //  to the breakpoint type scale. Media query is max-width on
+  //  purpose: desktop (≥lg, incl. 1440 QA width) is untouched.
   // =========================================================
   @media (max-width: 1151px) {
-    &__burger { display: block; }
+    &__burger {
+      display: block;
+      color: $color-primary;        // QA vs Figma frames: Hum-menu bars are primary blue
+    }
+
+    // 768 frame · Header px 32 / py 16 (node 70:48721) — overrides
+    // the container's tablet 20px. Same-specificity as .container;
+    // wins by source order (sections compile after base).
+    &__inner { padding-inline: 32px; }
 
     &__right {
       display: none;                // closed state
@@ -127,7 +137,7 @@ $font-nav: 'DM Sans', $font-body;
       flex-direction: column;
       align-items: stretch;
       gap: 24px;
-      padding: 24px $container-pad 32px;
+      padding: 24px 32px 32px;      // matches header side padding
       background-color: $color-white;
       box-shadow: 0 12px 24px rgba($color-secondary-1000, 0.12);
     }
@@ -140,11 +150,31 @@ $font-nav: 'DM Sans', $font-body;
       gap: 16px;
     }
 
-    &__nav-link { justify-content: space-between; }
+    &__nav-link {
+      justify-content: space-between;
+      padding-block: 4px;           // comfortable tap target rhythm
+    }
 
     &__actions {
       flex-direction: column;
       align-items: stretch;
+      gap: 16px;
     }
+  }
+
+  // Mobile (<768) · frame 320 (node 70:48340): p 16, logo scales down
+  @media (max-width: 767px) {
+    &__inner { padding-inline: 16px; }
+    &__right { padding-inline: 16px; }
+
+    // Logo · node 70:48342: icon 25.96×20.35, wordmark 19.644px, gap ~7
+    &__logo { gap: 7px; }
+
+    &__logo-icon {
+      width: 25.958px;
+      height: 20.346px;
+    }
+
+    &__logo-text { font-size: 19.644px; }   // node 70:48349
   }
 }

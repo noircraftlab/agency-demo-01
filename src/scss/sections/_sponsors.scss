@@ -44,7 +44,10 @@
     position: absolute;
     z-index: -1;                       // behind heading text (locked 2026-07-15)
     top: 65.71px;                      // section 205.71 − heading top 140
-    left: 600.12px;                    // section 632.12 − container inset 32
+    // Phase 6: px → center-anchor (600.12−688 = −87.88 от центра
+    // heading 1376). Рендер @1440 идентичен; на 1152–1439 мазок
+    // держится за слово «sponsors», а не за левый край.
+    left: calc(50% - 87.88px);
     width: 338.16px;
     height: 42.47px;
   }
@@ -62,4 +65,61 @@
   &__logo--microsoft { width: 287px;    height: 62px; }
   &__logo--slack     { width: 280px;    height: 71px; }
   &__logo--google    { width: 211px;    height: 69.81px; }
+}
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:50887 · Mobile 320 = node 70:48125
+// =============================================================
+
+.sponsors {
+  @media (max-width: 1151px) {
+    &__title { font-size: $fs-h3; }    // 54 (section stays py-140 at 768)
+
+    // Logo row → centered column · gap 100 (both frames)
+    &__row {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 100px;
+    }
+    // 768 keeps desktop logo sizes (nodes 70:50919…70:50939)
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80
+
+    &__title { font-size: $fs-h4; }    // 36
+
+    // 320 logo sizes · nodes 70:48157…70:48177 (Apple unchanged)
+    &__logo--microsoft { width: 213px;    height: 46px; }
+    &__logo--slack     { width: 192px;    height: 49px; }
+    &__logo--google    { width: 139.5px;  height: 46.16px; }
+  }
+}
+
+// Phase 6 · Word-anchored swoosh (≤1151) — see _work-management.scss
+.sponsors {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+  &__mark-swoosh { display: none; }
+
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band.
+// px <img> is pixel-perfect only at 1440; below it, wrap changes,
+// so ≤1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px→54px→36px heading). See _work-management.
+@media (max-width: 1439px) {
+  .sponsors {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+      left: 0.004em; top: 0.913em; width: 4.697em; height: 0.59em;
+    }
+  }
 }

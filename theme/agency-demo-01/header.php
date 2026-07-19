@@ -38,8 +38,8 @@ defined( 'ABSPATH' ) || exit;
 		<button class="site-header__burger" type="button"
 				aria-expanded="false" aria-controls="header-panel"
 				aria-label="<?php esc_attr_e( 'Open menu', 'agency-demo-01' ); ?>">
-			<svg class="site-header__burger-icon" viewBox="0 0 24 18" fill="none" aria-hidden="true">
-				<path d="M1 1H23M1 9H23M1 17H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+			<svg class="site-header__burger-icon" viewBox="0 0 42 24" fill="none" aria-hidden="true">
+				<path d="M1.5 1.5H40.5M1.5 12H40.5M1.5 22.5H40.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
 			</svg>
 		</button>
 

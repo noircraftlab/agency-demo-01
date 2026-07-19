@@ -89,3 +89,73 @@
     // $color-secondary #4F9CF9 per charter §3.2; documented in README.
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:48448 · Mobile 320 = node 70:45734
+//  Desktop (≥1152) compiles unchanged — base styles above are
+//  the frozen 1440 reference; everything below is override-only.
+// =============================================================
+
+.hero {
+  @media (max-width: 1151px) {
+    // 768 frame: Hero-section pt 140 / pb 100, single column, centered
+    &__inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 100px;                   // Heading/Image gap · node 70:48516
+      padding-block: 140px 100px;
+    }
+
+    &__content {
+      width: 100%;
+      align-items: center;          // Heading gap 60 stays from base
+      text-align: center;
+    }
+
+    &__title {
+      font-size: $fs-h3;            // 54 · node 70:48519 (tracking −2% scales via em)
+    }
+
+    // Image-container 551×367 · node 70:48527
+    &__media {
+      width: 551px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 551 / 367;
+    }
+
+    // Decor: the 768/320 frames draw their own hero vector sweep;
+    // we keep the desktop swoosh centered (overflow-hidden crops it).
+    // Known approximation — revisit at Phase 7 overlay pass if needed.
+  }
+
+  @media (max-width: 767px) {
+    // 320 frame: py 80 · node 70:45734
+    &__inner {
+      padding-block: 80px;
+    }
+
+    &__title {
+      font-size: $fs-h4;            // 36 · node 70:45805
+    }
+
+    // Image-container 286×191 · node 70:45813
+    &__media {
+      width: 286px;
+      aspect-ratio: 286 / 191;
+    }
+  }
+}
+
+// Phase 6 · Fluid guard 1152–1439. Base columns are flex:0 0 auto
+// summing to 1376 (perfect at 1440); below that they'd overflow and
+// hero's overflow:hidden would crop the image. Let them shrink —
+// graceful, not the 1152-frame's exact smaller art (Phase 7).
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .hero {
+    &__content, &__media { min-width: 0; flex-shrink: 1; }
+    &__media { max-width: 100%; }
+    &__media img { max-width: 100%; height: auto; }
+  }
+}

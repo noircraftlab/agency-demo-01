@@ -248,3 +248,98 @@ $footer-paper: #f7f7ee;
     &:hover { opacity: 0.7; }
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive
+//  Desktop band 1152–1439 = node 5:40811 (row kept, Info and
+//  divider stretch to container width). Tablet = node 5:42779,
+//  Mobile = node 5:45511 (Landing Page V2 twin frames — the
+//  Breakpoint V2 mobile original was lost 18.07, twin is 1:1).
+// =============================================================
+
+.site-footer {
+  // ---- 1152–1439: desktop layout goes fluid ----
+  // At 1440 the frozen base applies untouched (gap 100, hug-left,
+  // divider 1336). The frame at 1152 spreads Info across the full
+  // container and draws the divider full-width.
+  @media (min-width: 1152px) and (max-width: 1439px) {
+    &__info {
+      gap: 0;
+      justify-content: space-between;
+    }
+
+    &__inner::after { width: 100%; }
+  }
+
+  // ---- ≤1151: centered stack ----
+  @media (max-width: 1151px) {
+    &__inner {
+      // Info ↔ Btm gap stays 100 (frame 5:42780)
+      &::after { display: none; }     // no divider in 768/320 frames
+      padding-inline: 32px;           // Content x=32 (frame 5:42780)
+    }
+
+    &__info {
+      flex-direction: column;
+      align-items: center;
+      gap: 100px;                     // block pitch (frames 246/503/763…)
+      text-align: center;
+    }
+
+    &__brand {
+      align-items: center;
+      width: 100%;
+      gap: 24px;                      // logo → tagline (86−62)
+    }
+
+    // Logo ×1.844 · node 5:48183: icon 68.24×53.48, wordmark ≈51.6
+    &__logo { gap: 18px; }
+    &__logo img { width: 68.237px; height: 53.483px; }
+    &__logo-text { font-size: 51.64px; }
+
+    &__col { align-items: center; }
+
+    &__cta {
+      align-items: center;
+      text-align: center;
+      width: 201px;                   // Try-btn block · node 5:42805
+    }
+
+    &__bottom {
+      flex-direction: column;
+      gap: 40px;                      // legal row → socials (frame 5:42814)
+    }
+
+    &__legal {
+      width: 100%;
+      justify-content: space-between; // frame 5:42815: spread across 704
+      gap: 0;
+    }
+  }
+
+  // ---- ≤767 ----
+  @media (max-width: 767px) {
+    &__inner {
+      padding-inline: 16px;
+      gap: 80px;                      // Info ↔ Btm (1297−1217)
+    }
+
+    &__info { gap: 80px; }            // block pitch (frames 258/495/735…)
+
+    // logo back to desktop scale · node 5:48191 (37×29 + 28)
+    &__logo { gap: 10px; }
+    &__logo img { width: 37px; height: 29px; }
+    &__logo-text { font-size: $fs-h5; }
+
+    &__legal {
+      flex-direction: column;
+      gap: 20px;                      // pitch 40 = 20 text + 20 gap
+    }
+
+    // CTA button · node 5:45540: 196×70, label 18/30
+    &__cta .btn {
+      font-size: $fs-p2;
+      line-height: 30px;
+    }
+  }
+}

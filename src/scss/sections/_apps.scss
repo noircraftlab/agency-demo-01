@@ -104,3 +104,58 @@
     margin: 0;
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:50947 · Mobile 320 = node 70:48185
+//  DOM (media → content) already matches the frames' order.
+//  No swoosh in this section. Waves decor kept centered
+//  (center crop on narrow viewports — Phase 7 pass if needed).
+// =============================================================
+
+.apps {
+  @media (max-width: 1151px) {
+    // section stays py-140 at 768 · node 70:50947
+
+    &__inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 100px;                      // cluster ↔ heading
+    }
+
+    &__content {
+      flex: 0 0 auto;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__title { font-size: $fs-h3; }    // 54
+
+    // Cluster ~0.833 · node 70:51015 (485 wide)
+    &__media {
+      width: 485px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 582 / 470.8;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80
+
+    &__title { font-size: $fs-h4; }    // 36
+
+    &__media { width: 286px; }         // node 70:48253
+  }
+}
+
+// Phase 6 · Fluid guard 1152–1439 (see _hero).
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .apps {
+    &__inner { min-width: 0; }
+    &__content, &__media { min-width: 0; flex-shrink: 1; }
+    &__media { max-width: 100%; }
+    &__media img { max-width: 100%; height: auto; }
+  }
+}

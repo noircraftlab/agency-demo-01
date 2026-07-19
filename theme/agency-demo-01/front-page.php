@@ -70,7 +70,7 @@ get_header();
           <div class="work-management__text">
             <!-- Decor · swoosh underline · node 5:38271 (515.92×38.02) -->
             <img class="work-management__swoosh work-management__swoosh--pm" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pm-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="516" height="38" loading="lazy">
-            <h2 class="work-management__title">Project Management</h2>
+            <h2 class="work-management__title">Project <span class="work-management__mark work-management__mark--pm">Management<img class="work-management__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pm-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="516" height="38" loading="lazy"></span></h2>
             <p class="work-management__copy">Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them to a note.</p>
           </div>
           <a class="btn btn--primary btn--pad-section" href="#">
@@ -99,7 +99,7 @@ get_header();
             <img class="work-management__decor" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/wt-circles.svg' ) ); ?>" alt="" aria-hidden="true" width="570" height="440" loading="lazy">
             <!-- Decor · swoosh underline · node 5:39820 (334.11×25.55) -->
             <img class="work-management__swoosh work-management__swoosh--together" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/wt-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="334" height="26" loading="lazy">
-            <h2 class="work-management__title">Work together</h2>
+            <h2 class="work-management__title">Work <span class="work-management__mark work-management__mark--together">together<img class="work-management__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/wt-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="334" height="26" loading="lazy"></span></h2>
             <p class="work-management__copy">With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.</p>
           </div>
           <a class="btn btn--primary btn--pad-section" href="#">
@@ -124,7 +124,7 @@ get_header();
         <div class="customise__text">
           <!-- Decor · swoosh underline · node 5:37354 (418.26×31.47) -->
           <img class="customise__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/customise-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="418" height="31" loading="lazy">
-          <h2 class="customise__title">Customise it to your needs</h2>
+          <h2 class="customise__title">Customise it to <span class="customise__mark">your needs<img class="customise__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/customise-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="418" height="31" loading="lazy"></span></h2>
           <p class="customise__copy">Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
         </div>
         <a class="btn btn--primary btn--pad-section btn--face-montserrat" href="#">
@@ -160,7 +160,7 @@ get_header();
       <div class="pricing__heading">
         <!-- Decor · swoosh highlight · node 5:37566 (334.73×30.11, under "Your Plan") -->
         <img class="pricing__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pricing-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="335" height="30" loading="lazy">
-        <h2 class="pricing__title">Choose Your Plan</h2>
+        <h2 class="pricing__title">Choose <span class="pricing__mark">Your Plan<img class="pricing__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pricing-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="335" height="30" loading="lazy"></span></h2>
         <p class="pricing__subtitle">Whether you want to get organized, keep your personal life on track, or boost workplace productivity, Evernote has the right plan for you.</p>
       </div>
 
@@ -278,6 +278,12 @@ get_header();
 
       </div>
 
+
+      <div class="pricing__dots">
+        <button class="pricing__dot" type="button" aria-label="Pricing plan 1"></button>
+        <button class="pricing__dot" type="button" aria-label="Pricing plan 2"></button>
+        <button class="pricing__dot" type="button" aria-label="Pricing plan 3"></button>
+      </div>
     </div>
   </section>
 
@@ -294,7 +300,7 @@ get_header();
       <img class="your-work__decor" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-work-spiral.svg' ) ); ?>" alt="" aria-hidden="true" width="262" height="837" loading="lazy">
       <div class="your-work__text-block">
         <img class="your-work__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-work-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="315" height="24" loading="lazy">
-        <h2 class="your-work__title">Your work, everywhere you are</h2>
+        <h2 class="your-work__title">Your work, everywhere <span class="your-work__mark">you are<img class="your-work__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-work-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="315" height="24" loading="lazy"></span></h2>
         <p class="your-work__subtitle">Access your notes from your computer, phone or tablet by synchronising with various services, including whitepace, Dropbox and OneDrive. The app is available on Windows, macOS, Linux, Android and iOS. A terminal app is also available!</p>
       </div>
       <a class="btn btn--primary btn--pad-section" href="#">
@@ -321,7 +327,7 @@ get_header();
       <div class="your-data__text">
         <div class="your-data__text-block">
           <img class="your-data__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-data-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="352" height="37" loading="lazy">
-          <h2 class="your-data__title">100% your data</h2>
+          <h2 class="your-data__title">100% <span class="your-data__mark">your data<img class="your-data__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-data-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="352" height="37" loading="lazy"></span></h2>
           <p class="your-data__copy">The app is open source and your notes are saved to an open format, so you'll always have access to them. Uses End-To-End Encryption (E2EE) to secure your notes and ensure no-one but yourself can access them.</p>
         </div>
         <a class="btn btn--primary btn--pad-section" href="#">
@@ -349,7 +355,7 @@ get_header();
     <div class="container sponsors__inner">
       <div class="sponsors__heading">
         <img class="sponsors__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/sponsors-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="339" height="43" loading="lazy">
-        <h2 class="sponsors__title">Our sponsors</h2>
+        <h2 class="sponsors__title">Our <span class="sponsors__mark">sponsors<img class="sponsors__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/sponsors-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="339" height="43" loading="lazy"></span></h2>
       </div>
       <div class="sponsors__row">
         <img class="sponsors__logo--apple" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/sponsor-apple.svg' ) ); ?>" alt="Apple" width="56" height="68" loading="lazy">
@@ -401,7 +407,7 @@ get_header();
   <section class="testimonials">
     <div class="container testimonials__inner">
       <div class="testimonials__heading">
-        <h2 class="testimonials__title">See what our trusted users Say</h2>
+        <h2 class="testimonials__title">See what our <span class="testimonials__mark">trusted<img class="testimonials__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/testimonial-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="257" height="50" loading="lazy"></span> users Say</h2>
         <img class="testimonials__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/testimonial-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="257" height="50" loading="lazy">
       </div>
       <div class="testimonials__grid">
@@ -463,6 +469,12 @@ get_header();
         </div>
       </article>
       </div>
+      <div class="testimonials__dots">
+        <button class="testimonials__dot" type="button" aria-label="Testimonial 1"></button>
+        <button class="testimonials__dot" type="button" aria-label="Testimonial 2"></button>
+        <button class="testimonials__dot" type="button" aria-label="Testimonial 3"></button>
+      </div>
+
       <div class="testimonials__slider">
         <button class="testimonials__nav" type="button" aria-label="Previous testimonials">
           <img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/testimonial-arrow-left.svg' ) ); ?>" alt="" width="145" height="145" loading="lazy">

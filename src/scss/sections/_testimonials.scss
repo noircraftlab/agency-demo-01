@@ -69,7 +69,10 @@ $testimonials-ink: #01252a;
     position: absolute;
     z-index: -1;                   // мазок ПОД текстом (locked 2026-07-15)
     top: 77.8px;                   // y 217.8 − секционные 140
-    left: 622.17px;                // x 654.17 − container pad 32
+    // Phase 6: px → center-anchor (622.17−688 = −65.83 от центра
+    // heading 1376). Рендер @1440 идентичен; на 1152–1439 мазок
+    // держится за слово «trusted», а не за левый край.
+    left: calc(50% - 65.83px);
     width: 257px;
     height: 50px;
   }
@@ -196,6 +199,98 @@ $testimonials-ink: #01252a;
       width: 145px;
       height: 145px;
       max-width: none;
+    }
+  }
+}
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:51102 · Mobile 320 = node 70:48368
+//  Desktop arrow-slider (Phase 4) hides ≤1151; the row becomes a
+//  scroll-snap carousel with dots (dots per both frames here).
+// =============================================================
+
+.testimonials {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+  &__mark-swoosh { display: none; }
+
+  &__dots { display: none; }
+
+  @media (max-width: 1151px) {
+    padding-block: 140px 100px;        // 768: pt-140 pb-100 · node 70:51102
+
+    &__title { font-size: $fs-h3; }    // 54
+
+    // ---- carousel ----
+    &__grid {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-block: 30px;             // card shadows breathe
+      margin-block: -30px;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+    }
+
+    &__card {
+      flex: 0 0 auto;
+      width: min(437px, calc(100% - 48px));
+      scroll-snap-align: center;
+      padding: 20px;                   // frames: p-20 · node 70:51134
+    }
+
+    // fixed desktop boxes go fluid inside the narrow card
+    &__quote { width: 100%; }
+
+    &__meta {
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+
+    &__person { width: auto; }
+
+    // Phase-4 arrow slider is a desktop pattern — frames show dots
+    &__slider { display: none; }
+
+    &__dots { display: flex; gap: 12px; }
+
+    &__dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: $color-primary-100;
+      cursor: pointer;
+      transition: background-color $dur $ease;
+
+      &.is-active { background-color: $color-primary; }
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80 · node 70:48368
+    &__title { font-size: $fs-h4; }    // 36
+  }
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band.
+// px <img> is pixel-perfect only at 1440; below it, wrap changes,
+// so ≤1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px→54px→36px heading). See _work-management.
+@media (max-width: 1439px) {
+  .testimonials {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+      left: 0.038em; top: 1.081em; width: 3.569em; height: 0.694em;
     }
   }
 }

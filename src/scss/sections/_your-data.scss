@@ -92,3 +92,91 @@
     max-width: none;                   // reset sets img max-width:100%
   }
 }
+
+// =============================================================
+//  Phase 6 · Responsive (Breakpoint V2 frames)
+//  Tablet 768 = node 70:50789 · Mobile 320 = node 70:48027
+//  Frames put the diagram ABOVE the text → column-reverse
+//  (desktop DOM: text first, media second).
+// =============================================================
+
+.your-data {
+  @media (max-width: 1151px) {
+    // section stays py-140 at 768 · node 70:50789
+
+    &__inner {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 100px;                      // Element ↔ Heading
+    }
+
+    &__text {
+      flex: 0 0 auto;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__title { font-size: $fs-h3; }    // 54, single line
+
+    // Diagram scaled ~0.753 · node 70:50790 (513 wide).
+    // Export bleed offsets converted to % so the abs img scales along.
+    &__media {
+      width: 513px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 681 / 381.13;
+    }
+
+    &__graphic {
+      top: -0.87%;                     // −3.31 / 381.13
+      left: -5.73%;                    // −39 / 681
+      width: 110.43%;                  // 752 / 681
+      height: 104.95%;                 // 400 / 381.13
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-block: 80px;               // 320: py-80
+
+    &__title { font-size: $fs-h4; }    // 36, single line (266/288 — knife-edge)
+
+    &__media { width: 290px; }         // node 70:48028
+  }
+}
+
+// Phase 6 · Word-anchored swoosh (≤1151) — see _work-management.scss
+.your-data {
+  &__mark { position: relative; z-index: 0; white-space: nowrap; }
+  &__mark-swoosh { display: none; }
+
+}
+
+// Phase 6 · word-anchored swoosh across the whole sub-1440 band.
+// px <img> is pixel-perfect only at 1440; below it, wrap changes,
+// so ≤1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px→54px→36px heading). See _work-management.
+@media (max-width: 1439px) {
+  .your-data {
+    &__swoosh { display: none; }
+    &__mark-swoosh {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+      left: 0.192em; top: 0.962em; width: 4.878em; height: 0.508em;
+    }
+  }
+}
+
+// Phase 6 · Fluid guard 1152–1439 (see _hero).
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .your-data {
+    &__inner { min-width: 0; }
+    &__text, &__media { min-width: 0; flex-shrink: 1; }
+    &__media { max-width: 100%; }
+    &__media img { max-width: 100%; height: auto; }
+  }
+}
