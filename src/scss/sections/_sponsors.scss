@@ -1,6 +1,6 @@
 // =============================================================
 //  SECTION · Our Sponsors
-//  Source: node 5:37876 (frame 1440×538 · py 140 / px 32 · column,
+//  Source: node 5:37876 (frame 1440×538 · py 140 · px 32 · column,
 //          center, gap 100)
 //  H2       · node 5:37906 (1376×87, centered, swoosh decor)
 //  Swoosh   · node 5:37877 (338.16×42.47 · yellow, under "sponsors")
@@ -9,6 +9,7 @@
 //            Slack 5:37921 (280×71)   · Google 5:37929 (211×69.81)
 //            (gaps between logos ≈180.8 — pure justify-between)
 //  Captured 2026-07-17 via get_design_context + get_metadata
+//  Phase 7 · 1152 pixel-perfect anchor: node 5:40594 (see block at EOF)
 // =============================================================
 @use '../abstracts/tokens' as *;
 
@@ -61,6 +62,8 @@
   }
 
   // explicit sizes per Figma nodes (svg intrinsic sizes are rounded)
+  // — identical at the 1152 frame (nodes 5:40626/40631/40638/40646);
+  //   only the inter-logo gaps shrink (space-between auto-fits 1088).
   &__logo--apple     { width: 55.47px;  height: 68px; }
   &__logo--microsoft { width: 287px;    height: 62px; }
   &__logo--slack     { width: 280px;    height: 71px; }
@@ -121,5 +124,25 @@
       user-select: none;
       left: 0.004em; top: 0.913em; width: 4.697em; height: 0.59em;
     }
+  }
+}
+
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:40594)
+//  Captured 2026-07-19 via get_metadata on 5:39857 → 5:40594.
+//
+//  Only delta vs the 1440 base is the H2 title size (64 @1152 →
+//  72 @1440, node 5:40624 = 1088-wide centered box, height 77 = 64px).
+//  The logo row is unchanged: justify-between + width:100% auto-fits
+//  the 1088 content (gaps ~84.84 vs ~180.8 @1440); logo sizes are
+//  byte-identical to the 1440 nodes. Swoosh = Variant-1 word-anchor
+//  (already active ≤1439). No wraps, no assets, no HTML.
+//
+//  Title morph via 100vw (single centered line, huge slack — not
+//  knife-edge); clamp caps at 72 so ≥1440 keeps the base size.
+// =============================================================
+@media (min-width: 1152px) {
+  .sponsors__title {
+    font-size: clamp(64px, calc(64px + 8 * (100vw - 1152px) / 288), 72px);
   }
 }

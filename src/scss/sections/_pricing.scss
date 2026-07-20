@@ -6,6 +6,7 @@
 //  Cards        · nodes 5:37598 (Free) / 5:37636 (Personal, featured)
 //                       / 5:37674 (Organization)
 //  Captured 2026-07-16 via get_design_context + get_metadata
+//  Phase 7 · 1152 pixel-perfect anchor: node 5:40282 (see block at EOF)
 // =============================================================
 @use '../abstracts/tokens' as *;
 
@@ -47,7 +48,7 @@
     line-height: $lh-p2-regular;       // 30
     letter-spacing: $tracking-tight;   // −0.36px @18
     color: $color-text;
-    max-width: 979px;                  // node 5:37596 (979×60, 2 lines)
+    max-width: 979px;                  // node 5:37596 (979×60, 2 lines) — same @1152
     margin: 0;
   }
 
@@ -170,9 +171,12 @@
     margin: 0;
     // NOTE on wraps: the source's "Connect primary Google Calendar account "
     // carries a TRAILING SPACE that Figma counts in layout (314.6px > the
-    // 312.33px box) — it pushes "account" to line 2. Browsers hang trailing
-    // spaces instead (even with pre-wrap), so the HTML glues that space to
-    // the word as &nbsp; to reproduce the wrap (2026-07-16).
+    // 312.33px box @1440) — it pushes "account" to line 2. Browsers hang
+    // trailing spaces instead (even with pre-wrap), so the HTML glues that
+    // space to the word as &nbsp; to reproduce the wrap (2026-07-16).
+    // @1152 the box is 216.33px: "account" already sits on line 2 by natural
+    // wrap, so the &nbsp; is inert there — no new trailing-space fixes needed
+    // for any bullet at 1152 (fontTools-verified 2026-07-19, opsz-none).
   }
 
   // Featured card bullets step up to P2/Medium 18/23 · node 5:37646
@@ -263,5 +267,35 @@
       user-select: none;
       left: 0.184em; top: 0.812em; width: 4.649em; height: 0.418em;
     }
+  }
+}
+
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:40282)
+//  Captured 2026-07-19 via get_design_context on 5:40282.
+//
+//  The ONLY geometric delta vs the 1440 base is the H2 title size:
+//  Figma renders it at 64px @1152 (node 5:40313) vs 72px @1440
+//  (node 5:37595). Everything else is identical at 1152:
+//    · section 32/140 · inner gap 60 · heading gap 24
+//    · subtitle 979/18/30 (2 lines, unchanged)
+//    · cards flex:1 → 341.33px @1152 (vs 437.33 @1440); padding
+//      44/40/80, gap 32/25/28/19, radius 10, border/shadow all same
+//    · bullets re-wrap for free in the narrower 216.33px text box
+//      (icon 18 + gap 19 inside the 253.33px card interior).
+//      fontTools-verified @1152, opsz-none — see reference wraps
+//      in the 2026-07-19 session log. No &nbsp;/HTML change needed.
+//    · swoosh = Variant-1 word-anchor (already active ≤1439), rides
+//      "Your Plan", auto-scales from the 64px heading — locked.
+//  Carousel/dots live at ≤1151 (Phase 6); untouched here.
+//
+//  Title morph: 64 @1152 → 72 @1440. tracking is -0.02em so it
+//  follows the size automatically (−1.28px → −1.44px). Not a
+//  knife-edge value (single line, ~550px slack in a 1088 box), so
+//  100vw interpolation is safe here; clamp caps at 72 above 1440.
+// =============================================================
+@media (min-width: 1152px) {
+  .pricing__title {
+    font-size: clamp(64px, calc(64px + 8 * (100vw - 1152px) / 288), 72px);
   }
 }

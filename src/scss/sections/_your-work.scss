@@ -11,6 +11,7 @@
 //                 the section bounds. Export = visible crop 262×837,
 //                 local origin == section-space (0, −184).
 //  Captured 2026-07-17 via get_design_context + get_metadata
+//  Phase 7 · 1152 pixel-perfect anchor: node 5:40430 (see block at EOF)
 // =============================================================
 @use '../abstracts/tokens' as *;
 
@@ -150,5 +151,43 @@
       user-select: none;
       left: -0.676em; top: 0.848em; width: 4.362em; height: 0.333em;
     }
+  }
+}
+
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:40430)
+//  Captured 2026-07-19 via get_design_context on 5:40430.
+//
+//  ⚠️ STRUCTURAL divergence from the 1440 base (Roman-approved
+//  "Option A" 2026-07-19): the authored 1152 frame is LEFT-aligned
+//  with a narrow 650px heading block, NOT centered/1064 like 1440.
+//  So this is a layout SWITCH, not a morph — scoped to the narrow-
+//  desktop band [1152, 1439]; at ≥1440 the centered base takes over
+//  (a hard flip at the 1440 anchor, accepted).
+//
+//  Authored 1152 (node 5:40430):
+//    · section items-start (left)          → __inner align flex-start
+//    · Heading 5:40431  w-650 gap-60        → __text-block width 650
+//    · Title 5:40462  64px, 2 lines:        → __title 64 (tracking
+//        "Your work," / "everywhere you are"    -0.02em follows size)
+//    · Subtitle 5:40463  18/30 text-center, → base already centers
+//        4 lines in 650 (fontTools-verified,    ≥1152; nothing to do
+//        opsz-none): ".…synchronising with /
+//        …The app is / …A terminal app is also / available!"
+//    · Swoosh 5:40433 rides "you are" (line 2) via the ≤1439
+//        word-anchored __mark-swoosh — Variant-1, already active.
+//    · Spiral: NOT visible at 1152 — the left-aligned Btn-try pushes
+//        the far-bleeding ring background (insets ≈ −880%/−618%) off
+//        the top/left, clipped by overflow:hidden. Authored frame
+//        shows a clean dark band → HIDE (Variant-1, faithful; same
+//        call as the WM decor circles). Re-export would ADD a spiral
+//        the 1152 frame doesn't have.
+// =============================================================
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .your-work {
+    &__inner      { align-items: flex-start; }  // left, like the frame
+    &__text-block { width: 650px; }             // vs 1064 base
+    &__title      { font-size: 64px; }          // vs 72 base; 2-line wrap @650
+    &__decor      { display: none; }            // clipped out at 1152 — hide
   }
 }

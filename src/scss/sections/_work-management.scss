@@ -234,31 +234,69 @@
   }
 }
 
-// Phase 6 · Fluid guard 1152–1439 (see _hero). Stops the heading
-// column from overrunning the illustration ("Management" onto card).
+// =============================================================
+//  Phase 7 · Pixel-perfect band 1152–1439 (slice 1, node 5:40898)
+//  Replaces the Phase-6 min-content fluid guard. Anchors:
+//    @1152 → title 64px · row1: headline 528 (fills) + media 560×384.196
+//            gutter 0 · row2: graphic 528×491.561 + headline 527, gutter 33
+//    @1440 → base above (title 72 · media 719×448 · graphic 583×542.76 ·
+//            WT gap 160). Section pb 140 + inner gap 100 unchanged @both.
+//  Everything interpolates 1152→1440 so there is no jump at 1440.
+//  H2 wraps stable across the band (fontTools @64–72): PM "Project /
+//  Management", WT "Work together" single line — no &nbsp; glue.
+//  Swoosh underlines ride the ≤1439 em word-anchor (inherited) — they
+//  follow the word and scale with the 64→72 title (approximation vs the
+//  per-frame Figma marker, same spirit as the hero-swoosh Вариант-1).
+//  PM media AR morphs 1.458→1.605; illustration is object-fit:contain
+//  (unDraw substitute, charter §3.2), so it stays centred, box matches
+//  Figma. WT graphic AR is constant 1.074 → no distortion.
+// =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .work-management {
-    // Heading is flex:1 1 0 (size = free space). "Management" is one
-    // 510px word @72 that can't wrap, so min-width:0 let the column
-    // fall below it and the word overran the image. Pin the column to
-    // its content width and force the deficit onto the image instead.
-    &__headline {
-      flex-shrink: 0;
-      min-width: min-content;
+
+    // Section H2: 64 @1152 → 72 @1440
+    &__title {
+      font-size: calc(64px + 8 * (100vw - 1152px) / 288);
     }
+
+    // Both headlines flex-fill the remainder (base rule, restated to
+    // override the removed min-content pin explicitly)
+    &__headline { flex: 1 1 0; min-width: 0; }
+
+    // PM text-block is 436px in Figma (narrower than the 528 headline —
+    // empty space on the right), so the copy wraps "…supported." /
+    // "Create…". Ours previously filled 528 and wrapped wrong. Interpolate
+    // 436 → fill(657) so the 1440 base (width:100%) seams without a jump.
+    // WT text-block stays width:100% (527 = Figma) — its copy is correct.
+    &__row:not(.work-management__row--together) &__text {
+      width: calc(436px + 221 * (100vw - 1152px) / 288);
+    }
+
+    // Row 1 · Project Management illustration box (AR morphs, both axes)
     &__media {
-      min-width: 0;
-      flex-shrink: 1;
+      flex: 0 0 auto;
+      width:  calc(560px + 159 * (100vw - 1152px) / 288);      // 560 → 719
+      height: calc(384.196px + 63.804 * (100vw - 1152px) / 288); // 384.196 → 448
       max-width: 100%;
-      height: auto;
-      aspect-ratio: 719 / 448;         // follow width, drop fixed 448
     }
+
+    // Row 2 · Work Together gutter 33 → 160
+    &__row--together {
+      gap: calc(33px + 127 * (100vw - 1152px) / 288);
+    }
+
+    // Row 2 · avatars composition (AR constant 1.074, scales clean)
     &__graphic {
-      min-width: 0;
-      flex-shrink: 1;
+      flex: 0 0 auto;
+      width:  calc(528px + 55 * (100vw - 1152px) / 288);        // 528 → 583
+      height: calc(491.561px + 51.199 * (100vw - 1152px) / 288); // 491.561 → 542.76
       max-width: 100%;
-      height: auto;
     }
-    &__media img { height: auto; }
+
+    // Decor concentric circles: 1152 frame re-anchors a smaller top-left
+    // crop (245×273) that the desktop asset (569×440) can't match. Kept
+    // hidden (approximation, hero-swoosh Вариант-1 spirit). Re-export on
+    // request for a true 1152 decor.
+    &__decor { display: none; }
   }
 }

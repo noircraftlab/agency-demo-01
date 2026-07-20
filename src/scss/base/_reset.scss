@@ -2,6 +2,15 @@
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
 body { min-height: 100vh; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+// font-optical-sizing: none 2026-07-19 — Figma renders Inter at the axis-default
+// opsz 14 (no optical sizing); the browser default (auto) maps opsz to font-size
+// (18 for body copy) → a narrower cut → wrap diverges from Figma on tight lines.
+// SCOPED to >=1152 (the Phase-7 pixel-perfect range: 1152/1440/1920) so the
+// Phase-6 adaptive frames (<=1151, already QA'd at opsz=auto) are NOT touched.
+// Verified: headings unchanged (H1/H2 wraps stable opsz 14<->32).
+@media (min-width: 1152px) {
+  body { font-optical-sizing: none; }
+}
 img, picture, svg, video { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; color: inherit; }
 // text-wrap: balance removed 2026-07-15 — it redistributes heading line

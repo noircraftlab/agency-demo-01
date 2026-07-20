@@ -234,7 +234,7 @@ get_header();
             </li>
             <li class="pricing__feature">
               <img class="pricing__feature-icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pricing-check-blue.svg' ) ); ?>" alt="" aria-hidden="true" width="18" height="18" loading="lazy">
-              <p class="pricing__feature-text">Add due dates, reminders, and notifications to your tasks  </p>
+              <p class="pricing__feature-text">Add due dates, reminders, and notifications to your tasks&nbsp;&nbsp;</p>
             </li>
           </ul>
           <a class="btn btn--primary btn--pad-card" href="#">Get Started</a>
@@ -375,7 +375,8 @@ get_header();
        + central whitepace mark, exported as ONE svg.
        ============================================================ -->
   <section class="apps" id="resources">
-    <img class="apps__waves" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves.svg' ) ); ?>" alt="" aria-hidden="true" width="1440" height="701" loading="lazy">
+    <img class="apps__waves apps__waves--wide" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves.svg' ) ); ?>" alt="" aria-hidden="true" width="1440" height="701" loading="lazy">
+    <img class="apps__waves apps__waves--1152" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves-1152.svg' ) ); ?>" alt="" aria-hidden="true" width="1152" height="701" loading="lazy">
     <div class="container apps__inner">
       <div class="apps__media">
         <img class="apps__cluster" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-cluster.svg' ) ); ?>" alt="" width="582" height="471" loading="lazy">

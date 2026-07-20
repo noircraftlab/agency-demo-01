@@ -148,14 +148,42 @@
   }
 }
 
-// Phase 6 · Fluid guard 1152–1439. Base columns are flex:0 0 auto
-// summing to 1376 (perfect at 1440); below that they'd overflow and
-// hero's overflow:hidden would crop the image. Let them shrink —
-// graceful, not the 1152-frame's exact smaller art (Phase 7).
+// =============================================================
+//  Phase 7 · Pixel-perfect band 1152–1439 (slice 1, frame 5:39858)
+//  Replaces the Phase-6 fluid guard. Anchors:
+//    @1152 → Heading 562 (fills) + Image 526×350.454, gutter 0,
+//            section padding-block 140/140, container px 32.
+//    @1440 → base above (Heading 691 + Image 685×456.39, pb 100).
+//  Between anchors we interpolate image width + padding-block so
+//  there is no jump at 1440; Heading flex-fills the remainder.
+//  H1 stays 64px at 1152 (Figma keeps Header/H2 size); wrap
+//  "Get More Done / with whitepace" is greedy-natural — no &nbsp;
+//  glue (gluing would break the 1440 "…with / whitepace" break).
+//  Image aspect 526/350.454 == 685/456.39 == 1.5009, so a single
+//  aspect-ratio is exact at both anchors.
+// =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .hero {
-    &__content, &__media { min-width: 0; flex-shrink: 1; }
-    &__media { max-width: 100%; }
-    &__media img { max-width: 100%; height: auto; }
+    // Section vertical padding: 140 @1152 → 100 @1440
+    &__inner {
+      padding-block: calc(140px - 40 * (100vw - 1152px) / 288);
+    }
+
+    // Heading column fills the remainder (562 @1152 → 691 @1440)
+    &__content {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;                 // long-word overflow guard (rev.37)
+    }
+
+    // Image column: fixed-ratio, width interpolates 526 → 685
+    &__media {
+      flex: 0 0 auto;
+      width: calc(526px + 159 * (100vw - 1152px) / 288);
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 526 / 350.454;  // == 685/456.39, exact at both anchors
+    }
+
   }
 }

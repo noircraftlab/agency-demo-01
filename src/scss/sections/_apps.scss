@@ -23,6 +23,7 @@
 //  (L2 683.9px), P breaks after "…1000+ apps" (L1 656.3px) —
 //  matches Figma, no knife-edges, no trailing-space hacks.
 //  Captured 2026-07-17 via get_design_context + get_metadata
+//  Phase 7 · 1152 pixel-perfect anchor: node 5:40654 (see block at EOF)
 // =============================================================
 @use '../abstracts/tokens' as *;
 
@@ -38,15 +39,21 @@
   // NOTE: the MCP svg export came back pre-clipped to the page frame
   // (1440×701), so the ±45px side bleed is baked out. Visually identical
   // at 1440 — the bleed was clipped by overflow:hidden anyway.
+  // Two crops share the anchor; each carries its own width + center
+  // offset. --wide (1440 export) covers ≥1440 and ≤1151; --1152 (the
+  // narrower Phase-7 crop) swaps in across 1152–1439 (see EOF block).
   &__waves {
     position: absolute;
     z-index: -1;                       // behind content (locked 2026-07-15)
     top: 9.78px;
-    left: calc(50% - 720px);           // = 0 at 1440, centered when wider
-    width: 1440px;
     height: 701px;                     // export intrinsic (node 700.4)
     max-width: none;                   // reset sets img max-width:100%
   }
+  &__waves--wide {
+    width: 1440px;
+    left: calc(50% - 720px);           // = 0 at 1440, centered when wider
+  }
+  &__waves--1152 { display: none; }    // off outside its 1152–1439 band
 
   &__inner {
     display: flex;
@@ -150,12 +157,70 @@
   }
 }
 
-// Phase 6 · Fluid guard 1152–1439 (see _hero).
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:40654)
+//  Captured 2026-07-19 via get_metadata on 5:39857 → 5:40654.
+//  (Replaces the Phase-6 fluid guard for this same 1152–1439 band.)
+//
+//  SMOOTH MORPH (row layout at both anchors, widths scale):
+//    · cluster  : 528 @1152 → 582 @1440  (528/582 = 427.11/470.8 =
+//                 0.907 → uniform scale, SAME apps-cluster.svg reused)
+//    · content  : 460 @1152 → 694 @1440  (fills the remainder; base
+//                 flex:1 0 0 already grows — 528+100+460 = 1088 ✓)
+//    · title    : 64  @1152 → 72  @1440
+//  Copy stays P2/18 (re-wraps 2→3 lines in the narrower box).
+//
+//  Authored 1152 wraps (fontTools-verified, opsz-none — QA reference):
+//    Title (4 lines): "Work with" / "Your Favorite" / "Apps Using" /
+//                     "whitepace"           (widest 407.8 in 460 box)
+//    Copy  (3 lines): "…favorite software." /
+//                     "Integrate…with Zapier to have all" (437.6 —
+//                     the &nbsp; keeps "with Zapier" glued) /
+//                     "the tools…success."
+//    No knife-edge (≥22px clearance; holds even under scrollbar float
+//    → content-box floor ~445 vs copy line 437.6), so content stays
+//    flex-driven — no fixed-px pin needed (unlike Your Data).
+//
+//  Waves decor: kept as the 1440 export centered (Variant-1). The
+//  authored 1152 crop is 1224.64-wide (narrower crop of the same
+//  700.4-tall source, NOT a scale); the centered 1440 svg already
+//  shows an equivalent central window through overflow:hidden. Low-
+//  opacity line art — flagged for QA; re-export only on request.
+//
+//  Title morph via 100vw (multi-line but no knife-edge line — widest
+//  407.8 in 460, 52px slack); clamp caps at 72 for ≥1440.
+// =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .apps {
-    &__inner { min-width: 0; }
-    &__content, &__media { min-width: 0; flex-shrink: 1; }
-    &__media { max-width: 100%; }
-    &__media img { max-width: 100%; height: auto; }
+    &__title {
+      font-size: clamp(64px, calc(64px + 8 * (100vw - 1152px) / 288), 72px);
+    }
+
+    // vertical align: the 1152 frame CENTERS the columns (heading 545 tall
+    // vs cluster 427 → cluster sits at y≈199, both centered on y=412.5),
+    // unlike the base flex-start. At 1440 the two heights are near-equal
+    // so center ≈ top there — the flip at 1440 is seamless.
+    &__inner { align-items: center; }
+
+    // cluster scales 528 → 582; content (flex:1 0 0) takes the rest
+    &__media {
+      flex: 0 0 auto;
+      width: clamp(528px, calc(528px + 54 * (100vw - 1152px) / 288), 582px);
+      height: auto;
+      aspect-ratio: 582 / 470.8;
+    }
+
+    &__content { min-width: 0; }        // allow the flex column to shrink
+
+    // waves: swap the wide 1440 crop out for the pixel-perfect 1152
+    // crop — the wide crop's arcs drift here (Roman-confirmed 2026-07-20;
+    // the 1152 authored frame is a narrower crop of the same source,
+    // not a scale). Re-exported node 5:40655 → apps-waves-1152.svg.
+    &__waves--wide { display: none; }
+    &__waves--1152 {
+      display: block;
+      width: 1152px;
+      left: calc(50% - 576px);          // = 0 at 1152, centered when wider
+    }
   }
 }

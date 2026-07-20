@@ -7,6 +7,10 @@
 //  Phase 4: burger + mobile dropdown panel (<lg). Not in the 1440
 //  source frame — mechanics only; visual polish lands in Phase 6
 //  against the Breakpoint V2 frames.
+//  Phase 7: hybrid band 1152–1439 (frame 5:40873) — nav links
+//  dropped, action buttons kept inline, burger shown after them.
+//  Closed-state pixel-perfect; open state reveals nav as a dropdown
+//  (buttons stay inline). See the min-width:1152 block below.
 // =============================================================
 @use '../abstracts/tokens' as *;
 @use '../abstracts/mixins' as *;
@@ -106,6 +110,56 @@ $font-nav: 'DM Sans', $font-body;
     display: flex;
     align-items: center;
     gap: 24px;
+  }
+
+  // =========================================================
+  //  Phase 7 · Hybrid band 1152–1439 (frame 5:40873)
+  //  Figma 1152 closed state: logo | [Login 24 Try-free] 20 [burger].
+  //  Nav links dropped; action buttons kept inline; burger shown
+  //  AFTER the buttons (DOM has burger before __right → flex order).
+  //  Open state: burger reveals nav as an absolute dropdown; buttons
+  //  stay inline (unlike the ≤1151 panel, which absorbs both).
+  //  Desktop (≥1440 QA width) and the ≤1151 dropdown are untouched.
+  // =========================================================
+  @media (min-width: 1152px) and (max-width: 1439px) {
+    &__inner {
+      justify-content: flex-start;  // logo's auto margin drives alignment
+      gap: 20px;                    // Frame 376: actions-cluster ↔ burger
+    }
+
+    &__logo { margin-right: auto; } // push the right cluster to the edge
+
+    &__nav { display: none; }       // closed: 1152 frame has no inline nav links
+
+    &__burger {
+      display: block;
+      order: 1;                     // sit after __right (burger precedes it in DOM)
+      padding: 0;                   // box = icon 42×24 → 20px gap lands on the bars
+      color: $color-primary;        // parity with ≤1151 (no-op on <img>, intent only)
+    }
+
+    // Open state — burger reveals the nav links as an absolute
+    // dropdown anchored to .site-header; buttons remain inline.
+    // Panel styling mirrors the ≤1151 dropdown for consistency.
+    &.is-open &__nav {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 24px 32px 32px;
+      background-color: $color-white;
+      box-shadow: 0 12px 24px rgba($color-secondary-1000, 0.12);
+    }
+
+    &.is-open &__nav-link {
+      justify-content: space-between;
+      padding-block: 4px;
+    }
   }
 
   // =========================================================

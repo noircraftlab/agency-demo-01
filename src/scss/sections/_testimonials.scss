@@ -294,3 +294,46 @@ $testimonials-ink: #01252a;
     }
   }
 }
+
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:42488)
+//  Captured 2026-07-19 via get_metadata on 5:39857 → 5:42488.
+//
+//  The 3-column row stays (cards flex:1 → 341.33 @1152 vs 437.33
+//  @1440), but the 1152 frame uses a MORE COMPACT card + fixed
+//  internals go fluid — a distinct card layout, so it's pinned to
+//  the band and FLIPS to the base at 1440 (widths morph via flex;
+//  the internals snap at the 1440 anchor — same pattern as Your Work):
+//    · title   : 64 @1152 → 72 @1440 (centered, 1 line, swoosh under
+//                "trusted" via the ≤1439 word-anchor — Variant-1)
+//    · card pad: 20 @1152  (vs 60/40 base) — Comment at x20/y20,
+//                bottom 20 (node 5:42521)
+//    · quote   : fills the 301.33 inner (vs fixed 353) → 6 lines
+//    · meta    : fills the inner, Person(194)+Stars(103) packed
+//                gap 0 (Stars at x=194, node 5:42528) — NOT the base
+//                53 gap (which would overflow the 301.33 inner)
+//
+//  Quote wrap @301.33 (fontTools, opsz-none — QA reference):
+//    "…whitepace yet," / "…for your" / "…so easy and intuitive" /
+//    "…setup and if you" / "need any help their customer" /
+//    "service is seriously amazing."   (widest 290.3 in 301.33 → 11px
+//    clearance, holds under scrollbar — no pin needed)
+//
+//  gap comment↔meta stays 49, avatar↔quote 35 (base, node-matched).
+//  Title morph via 100vw (single centered line, ~150px slack).
+// =============================================================
+@media (min-width: 1152px) and (max-width: 1439px) {
+  .testimonials {
+    &__title {
+      font-size: clamp(64px, calc(64px + 8 * (100vw - 1152px) / 288), 72px);
+    }
+
+    &__card  { padding: 20px; }        // vs 60px 40px base
+
+    &__quote { width: 100%; }          // fills 301.33 inner → 6 lines
+
+    // Person + Stars packed (297 in 301.33), NOT the base 350/gap-53
+    // which overflows the narrower card
+    &__meta  { width: 100%; gap: 0; }
+  }
+}

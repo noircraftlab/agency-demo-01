@@ -158,12 +158,46 @@
   }
 }
 
-// Phase 6 · Fluid guard 1152–1439 (see _hero).
+// =============================================================
+//  Phase 7 · Pixel-perfect band 1152–1439 (slice 1, node 5:40069)
+//  Replaces the Phase-6 fluid guard. Anchors:
+//    @1152 → title 64 · headline 528 (fills) + gap 98 + illustration
+//            459×320.497 (3px right slack absorbed into the flex headline)
+//    @1440 → base above (title 72 · gap 98 · illustration 686×479).
+//  gap 98 is identical at both anchors (no interpolation). Illustration
+//  AR is constant 1.432 (459/320.497 == 686/479) → single aspect-ratio,
+//  no distortion; only width interpolates. Title 64→72 interpolates.
+//  Heading H2 wraps stable across the band (fontTools @64–72):
+//  "Customise it to" / "your needs". Copy wraps 3 lines in the 528-ish
+//  box (matches Figma h90) — no &nbsp; glue. Swoosh rides the ≤1439 em
+//  word-anchor under "your needs" (Вариант-1, locked for the slice).
+// =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .customise {
-    &__inner { min-width: 0; }
-    &__headline, &__media { min-width: 0; flex-shrink: 1; }
-    &__media { max-width: 100%; }
-    &__media img { max-width: 100%; height: auto; }
+
+    // Section H2: 64 @1152 → 72 @1440
+    &__title {
+      font-size: calc(64px + 8 * (100vw - 1152px) / 288);
+    }
+
+    // Headline flex-fills the remainder (base rule restated to override
+    // the removed shrink guard explicitly)
+    &__headline { flex: 1 1 0; min-width: 0; }
+
+    // Copy box is 528 in Figma (headline fills to 531 → +3px, a knife-edge
+    // that lets "text" cling to line 1). Pinned to a FIXED 528 (not a 100vw
+    // calc): 100vw shifts ~15px when the device-mode scrollbar toggles, which
+    // flips this 3px knife-edge. Fixed 528 is scrollbar-independent; the box
+    // reflows to the base width:100% (592) at 1440 in the graceful zone.
+    &__text { width: 528px; }
+
+    // Illustration box: AR constant 1.432, width interpolates 459 → 686
+    &__media {
+      flex: 0 0 auto;
+      width: calc(459px + 227 * (100vw - 1152px) / 288);   // 459 → 686
+      height: auto;
+      aspect-ratio: 686 / 479;                             // == 459/320.497
+      max-width: 100%;
+    }
   }
 }

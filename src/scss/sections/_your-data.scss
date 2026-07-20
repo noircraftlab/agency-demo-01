@@ -11,6 +11,7 @@
 //                 in): content offset −39 x / −3.31 y vs node origin.
 //  Columns touch: 695 + 681 = 1376 (container), no gap.
 //  Captured 2026-07-17 via get_design_context + get_metadata
+//  Phase 7 · 1152 pixel-perfect anchor: node 5:40495 (see block at EOF)
 // =============================================================
 @use '../abstracts/tokens' as *;
 
@@ -171,12 +172,66 @@
   }
 }
 
-// Phase 6 · Fluid guard 1152–1439 (see _hero).
+// =============================================================
+//  Phase 7 · 1152 pixel-perfect (slice 1 · frame 5:40495)
+//  Captured 2026-07-19 via get_design_context on 5:40495.
+//  (Replaces the Phase-6 fluid guard for this same 1152–1439 band.)
+//
+//  SMOOTH MORPH (not a flip): the layout stays a centered two-column
+//  row at both anchors — only the widths scale:
+//    · left column (text) : 526 @1152 → 695 @1440
+//    · diagram footprint  : 562 @1152 → 681 @1440
+//    · title              : 64  @1152 → 72  @1440
+//  562/681 = 314.53/381.13 = 0.8253 → the 1152 diagram is a UNIFORM
+//  scale of the 1440 one, so the SAME your-data-graphic.svg is reused
+//  (scaled via aspect-ratio + %-offsets, like the ≤1151 block).
+//  526 + 562 = 1088 = content @1152 (columns touch, no gap).
+//
+//  ⚠️ Copy knife-edge: at 526 the paragraph's line 2 measures 522.7px
+//  (3.3px clearance) — "…Uses End-To-End" holds, "Encryption" drops to
+//  line 3 (fontTools-verified, opsz-none). Because the text-column
+//  width = content − diagram, it would float with the DevTools scrollbar
+//  (~15px) and flip that wrap. Per the knife-edge rule we PIN the text
+//  box with a fixed-px clamp FLOOR (526px, scrollbar-immune); the
+//  diagram takes the float instead (flex-fill, big tolerance). Title
+//  morph uses 100vw (single line, ~53px slack — not knife-edge).
+//
+//  Authored 1152 wraps (QA reference):
+//    Title  : "100% your data" — 1 line (473/526)
+//    Copy   : "…saved to an open" / "…Uses End-To-End" /
+//             "Encryption (E2EE)…no-one but" / "yourself can access them."
+//    Swoosh : rides "your data" via the ≤1439 word-anchored mark-swoosh
+//             (Variant-1, already active) — no change.
+// =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .your-data {
-    &__inner { min-width: 0; }
-    &__text, &__media { min-width: 0; flex-shrink: 1; }
-    &__media { max-width: 100%; }
-    &__media img { max-width: 100%; height: auto; }
+    &__title {
+      font-size: clamp(64px, calc(64px + 8 * (100vw - 1152px) / 288), 72px);
+    }
+
+    // text column width driven by the text-block clamp (fixed floor 526px
+    // → copy wrap is scrollbar-immune at the 1152 anchor); grows to 695 @1440
+    &__text { flex: 0 0 auto; }
+    &__text-block {
+      width: clamp(526px, calc(526px + 169 * (100vw - 1152px) / 288), 695px);
+    }
+
+    // diagram fills the remainder (562 @1152 → 681 @1440); uniform scale
+    // via aspect-ratio, %-offset graphic scales the SVG with it
+    &__media {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: auto;
+      height: auto;
+      aspect-ratio: 681 / 381.13;
+      max-width: none;
+    }
+    &__graphic {
+      top: -0.868%;                    // −3.31 / 381.13
+      left: -5.727%;                   // −39 / 681
+      width: 110.425%;                 // 752 / 681
+      height: 104.95%;                 // 400 / 381.13
+      max-width: none;
+    }
   }
 }
