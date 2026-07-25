@@ -6,8 +6,23 @@
   margin-inline: auto;
   padding-inline: $container-pad;
 
+  // Phase 7 · slice 2 — ≥1920 pin (frame 70:56620, Variant A).
+  // Content is CAPPED at 1480 and centred; the ~220px side space is AUTO
+  // MARGIN, not padding. This keeps content exactly 1480 even when a
+  // scrollbar shrinks the viewport (~15px) — a padding-based 220 made
+  // flex-fill columns lose those ~15px and broke knife-edge wraps
+  // (Work-Management QA, 2026-07-25). At 1920 the auto margin resolves to
+  // (1920-1480)/2 = 220 (== frame side); wider viewports just grow it.
+  // 1440-1919 keeps the capped-1440 container (Phase 6). Every section
+  // reads .container, so this alone morphs Header, Your Work, Sponsors,
+  // Footer; two-column sections add their own >=1920 band.
+  @media (min-width: 1920px) {
+    max-width: $container-max-xxl;   // 1480 content, centred via margin auto
+    padding-inline: 0;               // side gap = auto margin ((vw - 1480) / 2)
+  }
+
   // Phase 6 · Breakpoint V2 frames: side padding steps down.
-  // Tablet band (768–1151, frame 70:48446): most sections sit on 20px.
+  // Tablet band (768-1151, frame 70:48446): most sections sit on 20px.
   // Section-level exceptions (e.g. header 32px) override locally.
   @media (max-width: 1151px) {
     padding-inline: 20px;

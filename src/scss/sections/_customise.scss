@@ -1,8 +1,8 @@
 // =============================================================
 //  SECTION · Customise it to your needs
-//  Source: node 5:37351 (frame 1440×759 · py 140 / px 32 · gap 98)
-//  Heading column · node 5:37352 (592×411, flex-1)
-//  Illustration    · node 5:37391 (686×479)
+//  Source: node 5:37351 (frame 1440x759 · py 140 / px 32 · gap 98)
+//  Heading column · node 5:37352 (592x411, flex-1)
+//  Illustration    · node 5:37391 (686x479)
 //  Captured 2026-07-15 via get_metadata + get_design_context
 // =============================================================
 @use '../abstracts/tokens' as *;
@@ -20,8 +20,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 60px;                         // text-block ↔ CTA · node 5:37352
-    flex: 1 1 0;                       // → 592 at xl
+    gap: 60px;                         // text-block <-> CTA · node 5:37352
+    flex: 1 1 0;                       // -> 592 at xl
     min-width: 0;
   }
 
@@ -29,16 +29,16 @@
     position: relative;                // anchors swoosh underline
     display: flex;
     flex-direction: column;
-    gap: 24px;                         // h2 ↔ paragraph · node 5:37353
+    gap: 24px;                         // h2 <-> paragraph · node 5:37353
     width: 100%;
   }
 
   &__title {
-    font-family: $font-body;           // Inter Bold 72 — Header/H1 style in source
+    font-family: $font-body;           // Inter Bold 72 - Header/H1 style in source
     font-size: $fs-h1;                 // 72 (section H2s use the H1 style, NOT $fs-h2)
     font-weight: 700;
-    line-height: normal;               // Figma leading normal (≈87px/line @72)
-    letter-spacing: $tracking-tight;   // −1.44px @72
+    line-height: normal;               // Figma leading normal (~87px/line @72)
+    letter-spacing: $tracking-tight;   // -1.44px @72
     color: $color-text;                // #212529 · node 5:37383
     margin: 0;
   }
@@ -48,7 +48,7 @@
     font-size: $fs-p2;
     font-weight: 400;
     line-height: $lh-p2-regular;       // 30
-    letter-spacing: $tracking-tight;   // −0.36px @18
+    letter-spacing: $tracking-tight;   // -0.36px @18
     color: $color-text;
     margin: 0;
   }
@@ -57,7 +57,7 @@
   // Absolute inside &__text, under "your needs" (H1 line 2).
   &__swoosh {
     position: absolute;
-    z-index: -1;                       // behind heading text — Figma paints the
+    z-index: -1;                       // behind heading text - Figma paints the
                                        // marker stroke UNDER the letters (2026-07-15)
     top: 148.06px;                     // node 5:37354 · y within text-block
     left: 0;
@@ -68,7 +68,24 @@
     user-select: none;
   }
 
-  // ---- illustration slot · node 5:37391 (686×479) ----
+  // ---- swoosh underline · >=1920 variant · node 70:58463 (274x28.1957) ----
+  // The 1920 frame narrows the highlight to "needs" only (x 163), where the
+  // 1440 frame underlines the whole "your needs" (x 0). Re-exported scribble.
+  // Hidden until the >=1920 band swaps it in (see bottom of file).
+  &__swoosh--xxl {
+    position: absolute;
+    z-index: -1;
+    top: 143px;                        // node 70:58463 · 55.43% of text-block 258
+    left: 163px;                       // 23.39% · start of "needs" on line 2
+    width: 274px;
+    height: 28.1957px;
+    max-width: none;
+    pointer-events: none;
+    user-select: none;
+    display: none;
+  }
+
+  // ---- illustration slot · node 5:37391 (686x479) ----
   &__media {
     flex: 0 0 auto;
     width: 686px;
@@ -81,8 +98,8 @@
     height: 100%;
     object-fit: contain;
     // Source node 107:53693 is a flat #C4DEFD placeholder (Freepik raster
-    // absent from the CC BY 4.0 community file) — replaced with an unDraw
-    // illustration recolored to #4F9CF9 per charter §3.2; documented in README.
+    // absent from the CC BY 4.0 community file) - replaced with an unDraw
+    // illustration recolored to #4F9CF9 per charter 3.2; documented in README.
   }
 }
 
@@ -98,7 +115,7 @@
     &__inner {
       flex-direction: column;
       align-items: center;
-      gap: 60px;                       // Heading ↔ Illustration
+      gap: 60px;                       // Heading <-> Illustration
     }
 
     &__headline {
@@ -109,7 +126,7 @@
 
     &__title { font-size: $fs-h3; }    // 54
 
-    // Illustration 557×389 · node 107:71268 (same AR as desktop)
+    // Illustration 557x389 · node 107:71268 (same AR as desktop)
     &__media {
       width: 557px;
       max-width: 100%;
@@ -132,7 +149,7 @@
   }
 }
 
-// Phase 6 · Word-anchored swoosh (≤1151) — see _work-management.scss
+// Phase 6 · Word-anchored swoosh (<=1151) - see _work-management.scss
 .customise {
   &__mark { position: relative; z-index: 0; white-space: nowrap; }
   &__mark-swoosh { display: none; }
@@ -141,8 +158,8 @@
 
 // Phase 6 · word-anchored swoosh across the whole sub-1440 band.
 // px <img> is pixel-perfect only at 1440; below it, wrap changes,
-// so ≤1439 the word-anchored duplicate takes over (em geometry
-// scales with the 72px→54px→36px heading). See _work-management.
+// so <=1439 the word-anchored duplicate takes over (em geometry
+// scales with the 72px->54px->36px heading). See _work-management.
 @media (max-width: 1439px) {
   .customise {
     &__swoosh { display: none; }
@@ -159,23 +176,23 @@
 }
 
 // =============================================================
-//  Phase 7 · Pixel-perfect band 1152–1439 (slice 1, node 5:40069)
+//  Phase 7 · Pixel-perfect band 1152-1439 (slice 1, node 5:40069)
 //  Replaces the Phase-6 fluid guard. Anchors:
-//    @1152 → title 64 · headline 528 (fills) + gap 98 + illustration
-//            459×320.497 (3px right slack absorbed into the flex headline)
-//    @1440 → base above (title 72 · gap 98 · illustration 686×479).
+//    @1152 -> title 64 · headline 528 (fills) + gap 98 + illustration
+//            459x320.497 (3px right slack absorbed into the flex headline)
+//    @1440 -> base above (title 72 · gap 98 · illustration 686x479).
 //  gap 98 is identical at both anchors (no interpolation). Illustration
-//  AR is constant 1.432 (459/320.497 == 686/479) → single aspect-ratio,
-//  no distortion; only width interpolates. Title 64→72 interpolates.
-//  Heading H2 wraps stable across the band (fontTools @64–72):
+//  AR is constant 1.432 (459/320.497 == 686/479) -> single aspect-ratio,
+//  no distortion; only width interpolates. Title 64->72 interpolates.
+//  Heading H2 wraps stable across the band (fontTools @64-72):
 //  "Customise it to" / "your needs". Copy wraps 3 lines in the 528-ish
-//  box (matches Figma h90) — no &nbsp; glue. Swoosh rides the ≤1439 em
-//  word-anchor under "your needs" (Вариант-1, locked for the slice).
+//  box (matches Figma h90) - no &nbsp; glue. Swoosh rides the <=1439 em
+//  word-anchor under "your needs" (Variant-1, locked for the slice).
 // =============================================================
 @media (min-width: 1152px) and (max-width: 1439px) {
   .customise {
 
-    // Section H2: 64 @1152 → 72 @1440
+    // Section H2: 64 @1152 -> 72 @1440
     &__title {
       font-size: calc(64px + 8 * (100vw - 1152px) / 288);
     }
@@ -184,20 +201,38 @@
     // the removed shrink guard explicitly)
     &__headline { flex: 1 1 0; min-width: 0; }
 
-    // Copy box is 528 in Figma (headline fills to 531 → +3px, a knife-edge
+    // Copy box is 528 in Figma (headline fills to 531 -> +3px, a knife-edge
     // that lets "text" cling to line 1). Pinned to a FIXED 528 (not a 100vw
     // calc): 100vw shifts ~15px when the device-mode scrollbar toggles, which
     // flips this 3px knife-edge. Fixed 528 is scrollbar-independent; the box
     // reflows to the base width:100% (592) at 1440 in the graceful zone.
     &__text { width: 528px; }
 
-    // Illustration box: AR constant 1.432, width interpolates 459 → 686
+    // Illustration box: AR constant 1.432, width interpolates 459 -> 686
     &__media {
       flex: 0 0 auto;
-      width: calc(459px + 227 * (100vw - 1152px) / 288);   // 459 → 686
+      width: calc(459px + 227 * (100vw - 1152px) / 288);   // 459 -> 686
       height: auto;
       aspect-ratio: 686 / 479;                             // == 459/320.497
       max-width: 100%;
     }
+  }
+}
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band >=1920 (slice 2, node 70:58459)
+//  Layout auto-follows the >=1920 container: gap 98 + illustration
+//  686x479 are IDENTICAL to the 1440 base, so the headline flex-fills
+//  592 -> 696 on its own; padding 140 and title 72 are unchanged too.
+//  H1 wrap "Customise it to / your needs" is already correct - the
+//  __mark span (white-space:nowrap) keeps "your needs" atomic, so it
+//  drops to line 2. Copy stays 2 lines. => no layout rules needed here.
+//  ONLY delta: the swoosh. 1440 underlines "your needs" (418, x=0);
+//  1920 (node 70:58463) underlines "needs" only (274, x=163). Swap.
+// =============================================================
+@media (min-width: 1920px) {
+  .customise {
+    &__swoosh      { display: none; }   // hide the base "your needs" underline
+    &__swoosh--xxl { display: block; }  // show the "needs"-only scribble
   }
 }

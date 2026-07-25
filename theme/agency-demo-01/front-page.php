@@ -71,7 +71,7 @@ get_header();
             <!-- Decor · swoosh underline · node 5:38271 (515.92×38.02) -->
             <img class="work-management__swoosh work-management__swoosh--pm" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pm-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="516" height="38" loading="lazy">
             <h2 class="work-management__title">Project <span class="work-management__mark work-management__mark--pm">Management<img class="work-management__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/pm-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="516" height="38" loading="lazy"></span></h2>
-            <p class="work-management__copy">Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them to a note.</p>
+            <p class="work-management__copy">Images, videos, PDFs and audio files are supported. Create math expressions and diagrams directly from the app. Take photos with the mobile app and save them <span class="wm-nowrap">to a note.</span></p>
           </div>
           <a class="btn btn--primary btn--pad-section" href="#">
             Get Started
@@ -124,6 +124,7 @@ get_header();
         <div class="customise__text">
           <!-- Decor · swoosh underline · node 5:37354 (418.26×31.47) -->
           <img class="customise__swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/customise-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="418" height="31" loading="lazy">
+          <img class="customise__swoosh--xxl" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/customise-swoosh-1920.svg' ) ); ?>" alt="" aria-hidden="true" width="274" height="28" loading="lazy">
           <h2 class="customise__title">Customise it to <span class="customise__mark">your needs<img class="customise__mark-swoosh" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/customise-swoosh.svg' ) ); ?>" alt="" aria-hidden="true" width="418" height="31" loading="lazy"></span></h2>
           <p class="customise__copy">Customise the app with plugins, custom themes and multiple text editors (Rich Text or Markdown). Or create your own scripts and plugins using the Extension API.</p>
         </div>
@@ -296,6 +297,7 @@ get_header();
        clipped by the section — exported as one cropped SVG.
        ============================================================ -->
   <section class="your-work">
+    <img class="your-work__decor--xxl" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-work-spiral-1920.png' ) ); ?>" alt="" aria-hidden="true" width="502" height="837" loading="lazy">
     <div class="container your-work__inner">
       <img class="your-work__decor" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/your-work-spiral.svg' ) ); ?>" alt="" aria-hidden="true" width="262" height="837" loading="lazy">
       <div class="your-work__text-block">
@@ -377,6 +379,7 @@ get_header();
   <section class="apps" id="resources">
     <img class="apps__waves apps__waves--wide" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves.svg' ) ); ?>" alt="" aria-hidden="true" width="1440" height="701" loading="lazy">
     <img class="apps__waves apps__waves--1152" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves-1152.svg' ) ); ?>" alt="" aria-hidden="true" width="1152" height="701" loading="lazy">
+    <img class="apps__waves apps__waves--xxl" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-waves-1920.svg' ) ); ?>" alt="" aria-hidden="true" width="1920" height="701" loading="lazy">
     <div class="container apps__inner">
       <div class="apps__media">
         <img class="apps__cluster" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/apps-cluster.svg' ) ); ?>" alt="" width="582" height="471" loading="lazy">

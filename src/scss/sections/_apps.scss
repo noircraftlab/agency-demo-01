@@ -55,6 +55,12 @@
   }
   &__waves--1152 { display: none; }    // off outside its 1152–1439 band
 
+  // ≥1920 wave crop — node 70:59049 (2041 source, Figma page-clipped to
+  // 1920×701 on export). Covers the FULL 1920 width (the 1440 --wide crop
+  // leaves ~240px empty margins each side at 1920, and its arcs are a
+  // narrower window of the source, not a stretch). Off until ≥1920.
+  &__waves--xxl { display: none; }
+
   &__inner {
     display: flex;
     align-items: flex-start;           // both columns top-align at y 140
@@ -221,6 +227,29 @@
       display: block;
       width: 1152px;
       left: calc(50% - 576px);          // = 0 at 1152, centered when wider
+    }
+  }
+}
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band >=1920 (slice 2)
+//  Layout auto-follows: cluster 582 (fixed, == base) + gutter 100 are
+//  unchanged, so the heading column flex-fills 694 -> 798 on its own;
+//  padding 140 + title 72 unchanged. Wraps re-measured in the 798 box
+//  (fontTools, opsz-none): H1 "Work with Your / Favorite Apps Using /
+//  whitepace" (3 lines, 113px min clearance) and copy 2 lines (25px
+//  clearance) -> both match the frame, no knife-edge. => no layout rules.
+//  ONLY delta: the wave decor. Swap the 1440 --wide crop (centered,
+//  ~240px empty margins at 1920) for the 1920 page-clipped crop that
+//  fills the full width. Centered so it stays put on wider viewports.
+// =============================================================
+@media (min-width: 1920px) {
+  .apps {
+    &__waves--wide { display: none; }
+    &__waves--xxl {
+      display: block;
+      width: 1920px;
+      left: calc(50% - 960px);          // = 0 at 1920, centered when wider
     }
   }
 }

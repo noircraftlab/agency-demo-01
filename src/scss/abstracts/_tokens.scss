@@ -71,6 +71,11 @@ $container-max:  1376px;
 $container-pad:  32px;
 $section-rhythm: 140px;
 
+// Phase 7 · slice 2 — 1920 breakpoint pin (frame 70:56620, Variant A).
+// Content grows 1376 → 1480, side margin 32 → 220 at ≥1920 (discrete step).
+$container-max-xxl: 1480px;
+$container-pad-xxl: 220px;
+
 // Breakpoints — §3.4 (Breakpoint V2 frames)
 $breakpoints: (
   'sm':  320px,

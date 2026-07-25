@@ -343,3 +343,30 @@ $footer-paper: #f7f7ee;
     }
   }
 }
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band >=1920 (slice 2)
+//  The 1920 frame (node 70:59291) spreads the Info row across the full
+//  1480 content (CTA at the right edge, x=1221) and stretches the
+//  divider to 1480 — same treatment as the 1152 frame. The 1440 base
+//  stays hug-left / divider 1336 (its "sloppy 1480" claim, left-aligned).
+//  Everything else auto-follows: brand 240 / nav cols hug / CTA 259 are
+//  fixed (tagline 4 lines, CTA-copy 2 lines, nav links nowrap — all
+//  unchanged), and the Btm row is space-between (fills 1480 on its own).
+// =============================================================
+@media (min-width: 1920px) {
+  .site-footer {
+    // Info row: the frame lays the 4 left columns on a FIXED 305.25 pitch
+    // (205.25 slot + 100 gap) with the CTA (259) at the right edge — NOT an
+    // even space-between, which drifts the middle columns ~78px right of the
+    // frame (Roman-caught 2026-07-25). Pin each left column to 205.25; the
+    // tagline (240) overflows its brand slot into the gap, exactly as source.
+    // 4×205.25 + 4×100 + 259 = 1480 → fills the content exactly, CTA flush right.
+    &__info    { justify-content: flex-start; }   // override the earlier space-between
+    &__brand   { width: 205.25px; }               // fixed slot
+    &__tagline { width: 240px; }                  // keep 4-line wrap despite 205.25 slot
+    &__col     { width: 205.25px; }               // fixed slot (nav content left-aligned)
+
+    &__inner::after { width: 100%; }              // divider spans full 1480 (base 1336)
+  }
+}

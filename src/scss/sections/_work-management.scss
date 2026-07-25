@@ -300,3 +300,66 @@
     &__decor { display: none; }
   }
 }
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band ≥1920 (slice 2)
+//  Row 1 (PM)  · node 70:56868 → 70:56870: headline 672 + media 748×547,
+//               gutter 60 (base row had ZERO gutter). Title stays 72 →
+//               "Project / Management" wrap unchanged; px-locked swoosh
+//               underlines stay valid (words hug the same left origin).
+//               Headline flex-fills: 1480 − 748 − 60 = 672.
+//  Row 2 (WT)  · node 70:57127: graphic 710×661 (AR 1.074 == base, clean
+//               scale) + headline 670, gutter 100 (base 160). Headline
+//               flex-fills: 1480 − 710 − 100 = 670. "Work together" 1 line.
+//  Section pb 140 + inner gap 100 unchanged (== frame). __text width:100%
+//  (base) gives the 672 / 670 text-blocks — no 1152-band override here.
+//  PM media box AR 1.368 (base 1.605) < unDraw AR (~1.6): object-fit:
+//  contain centres it → possible ~40px vertical letterbox (substitute
+//  limit, charter §3.2). QA flag.
+//  Decor: base offset lands ~66px right / 90px up of the frame at 1920,
+//  so re-anchor to the frame offset + crop (relative to WT __text).
+//  Non-uniform scale of the base ring asset (×1.0585 / ×1.0186) adds ~4%
+//  ellipticity — imperceptible on the faint multiply ring; QA flag.
+// =============================================================
+@media (min-width: 1920px) {
+  .work-management {
+
+    // Row 1 (PM): introduce the 60px gutter (base row had none)
+    &__row:not(.work-management__row--together) {
+      gap: 60px;
+    }
+
+    // Row 1 illustration slot 719×448 → 748×547 (contain)
+    &__media {
+      width: 748px;
+      height: 547px;
+    }
+
+    // Row 2 (WT): gutter 160 → 100
+    &__row--together {
+      gap: 100px;
+    }
+
+    // Row 2 avatars composition 583×542.76 → 710×661 (AR 1.074 kept)
+    &__graphic {
+      width: 710px;
+      height: 661px;
+    }
+
+    // Decor concentric circles: re-anchor to the 1920 frame
+    // (node 70:58398, offset from WT __text) + frame crop size.
+    &__decor {
+      top: -705.5px;
+      left: -1192.13px;
+      width: 602.84px;
+      height: 448.52px;
+    }
+
+    // PM copy — force the Figma break "…save them / to a note.". The site
+    // loads Inter WITHOUT the opsz axis, so the browser cut runs slightly
+    // narrower than Figma (opsz 14) and fits "to" onto line 2. Gluing the
+    // tail <span> makes "to a note." atomic → it drops to line 3.
+    // Scoped ≥1920 ONLY, so the verified 1152/768/320 wraps stay untouched.
+    &__copy .wm-nowrap { white-space: nowrap; }
+  }
+}

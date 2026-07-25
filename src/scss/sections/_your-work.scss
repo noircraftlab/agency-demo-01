@@ -93,6 +93,29 @@
     height: 837px;
     pointer-events: none;
   }
+
+  // ---- spiral rings decor · ≥1920 variant · node 70:58857 (flattened) ----
+  // The 1440 crop (262 wide, anchored to the inset .container) reads too
+  // small and floats ~220px off the left edge at 1920. The frame shows a
+  // WIDER spiral hugging the SECTION left edge. This variant is a flat
+  // 502×836.5 export (2× PNG) placed as a direct child of .your-work, so
+  // it anchors to the full-width section (left 0 == section edge, not the
+  // capped container). Rings exported at ~0.88 alpha (0.2 NOT baked, unlike
+  // the base SVG), so we dim them to the Figma level with opacity here.
+  // top/left are px-locked to the target 1920 frame — QA-nudge if needed.
+  &__decor--xxl {
+    position: absolute;
+    z-index: -1;
+    top: -178px;                       // bottom ring tucks just inside the 574
+    left: 0;                           // band (content is 622 tall → top clips
+    width: 502px;                      // ~50px, like the frame; no bottom spill)
+    height: 836.5px;
+    opacity: 0.22;                     // brings ~0.88-alpha rings to Figma's ~0.2
+    max-width: none;                   // guard vs global img { max-width: 100% }
+    pointer-events: none;
+    user-select: none;
+    display: none;                     // swapped in only at ≥1920 (see EOF)
+  }
 }
 
 // =============================================================
@@ -189,5 +212,22 @@
     &__text-block { width: 650px; }             // vs 1064 base
     &__title      { font-size: 64px; }          // vs 72 base; 2-line wrap @650
     &__decor      { display: none; }            // clipped out at 1152 — hide
+  }
+}
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band >=1920 (slice 2)
+//  Layout auto-follows: __text-block is a FIXED 1064 (same as base),
+//  centred in the wider container -> H2/subtitle wraps are IDENTICAL
+//  to the verified 1440 base (box unchanged), the center-anchored
+//  swoosh (50% + 231.5) lands at x=763.5 == frame, and the CTA stays
+//  centred. Section pad 140 unchanged. => no layout rules needed.
+//  ONLY delta: the spiral decor. Swap the inset 262 base crop for the
+//  section-anchored, edge-hugging 502 export (node 70:58857).
+// =============================================================
+@media (min-width: 1920px) {
+  .your-work {
+    &__decor      { display: none; }    // hide the inset 1440 crop
+    &__decor--xxl { display: block; }   // show the edge-hugging 1920 spiral
   }
 }

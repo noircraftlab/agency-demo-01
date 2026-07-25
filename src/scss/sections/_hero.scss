@@ -187,3 +187,35 @@
 
   }
 }
+
+// =============================================================
+//  Phase 7 · Pixel-perfect band ≥1920 (slice 2, frame 70:56622)
+//  Discrete pin (Variant A). Anchors to the 1920 frame:
+//    Heading 656 + Image 824×549, gutter 0, section pb 140/140.
+//  Container (≥1920) already gives 1480 content, so 656 + 824 = 1480
+//  sits flush (justify flex-start, zero gutter, image meets right edge).
+//  H1 stays 64px; greedy wrap "Get More Done with / whitepace" —
+//  line-1 measured 595px in a 656 box (fontTools Inter Bold 64/−2%,
+//  opsz 14) → 61px clearance, no &nbsp; glue needed.
+//  Image aspect 824/549 == 685/456.39 == 1.5009 (base ratio kept).
+//  Heading (361 tall) centers in __inner (549 = image height):
+//  offset (549−361)/2 = 94 == frame Heading y.
+//  Swoosh: base centered sweep kept (frame's is a wider, repositioned
+//  redraw, not a clean ×1.333 scale) — known approximation per slice 1.
+// =============================================================
+@media (min-width: 1920px) {
+  .hero {
+    &__inner {
+      padding-block: 140px;         // frame: Block y=140, bottom 829−140−549=140
+    }
+
+    &__content {
+      width: 656px;                 // frame Heading 70:56691 (base 691)
+    }
+
+    &__media {
+      width: 824px;                 // frame Image-container 70:56700 (base 685)
+      height: 549px;                // base 456.39
+    }
+  }
+}
