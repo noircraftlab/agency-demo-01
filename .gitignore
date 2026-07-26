@@ -20,3 +20,6 @@ wp-config-local.php
 
 # wp theme build artifacts (authored at repo root, synced by npm run build:wp / sync:wp)
 theme/agency-demo-01/assets/
+
+# theme package (rebuilt from source, not versioned)
+theme/*.zip

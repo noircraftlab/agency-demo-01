@@ -123,6 +123,8 @@ Accent colors (yellow CTA family) are not published as styles in the source file
 
 ## 7. Definition of Done
 
+> These are the acceptance criteria as written **before** the build, and they are deliberately left unticked. The point of this document is to be a record of what was promised and estimated up front, not a report of what happened afterwards. Verified results — measured against the live demo — are in the Definition of Done table in the README.
+
 - [ ] Overlay diff vs Figma at 1440: visual deviation ≤ 2px on structural elements
 - [ ] All 5 breakpoints match corresponding Figma frames
 - [ ] Slider + mobile nav pass keyboard-only test

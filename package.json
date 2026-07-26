@@ -1,6 +1,6 @@
 {
   "name": "agency-demo-01",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "White-label proof-of-work: pixel-perfect WordPress build of the Whitepace SaaS Landing V2 Figma (Noircraft Lab).",
   "scripts": {

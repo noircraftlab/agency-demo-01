@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-const AGDEMO_VERSION = '0.1.0';
+const AGDEMO_VERSION = '1.0.0';
 
 /**
  * Theme supports.
@@ -91,6 +91,35 @@ function agdemo_resource_hints( array $urls, string $relation_type ): array {
 	return $urls;
 }
 add_filter( 'wp_resource_hints', 'agdemo_resource_hints', 10, 2 );
+
+/**
+ * Favicon, shipped with the theme.
+ *
+ * The demo installs and runs with zero configuration, so the icon lives in
+ * the theme rather than in the database: Customize → Site Identity writes to
+ * options, which no clone of this repository inherits. If a site does set a
+ * Site Icon in WordPress, that one wins and this bows out.
+ *
+ * SVG first (scales to any density), 32px PNG as the fallback. No
+ * apple-touch-icon: `rel="apple-touch-icon"` is not a conforming link type
+ * and would cost the W3C 0-error result for a home-screen case a desktop
+ * demo does not have.
+ */
+function agdemo_favicon(): void {
+	if ( has_site_icon() ) {
+		return;
+	}
+
+	printf(
+		'<link rel="icon" href="%s" type="image/svg+xml">' . "\n",
+		esc_url( get_theme_file_uri( 'assets/img/favicon.svg' ) )
+	);
+	printf(
+		'<link rel="icon" href="%s" sizes="32x32" type="image/png">' . "\n",
+		esc_url( get_theme_file_uri( 'assets/img/favicon-32.png' ) )
+	);
+}
+add_action( 'wp_head', 'agdemo_favicon', 2 );
 
 /**
  * Front-end slimming — pixel parity + Lighthouse (charter DoD:
